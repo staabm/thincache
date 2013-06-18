@@ -48,7 +48,8 @@ class CacheInMemory extends CacheAbstract {
         
         foreach(array('CacheApc', 'CacheMemcached', 'CacheMemcache') as $backend) {
             // require manually because we need this class while setting up autoload'ing
-            require_once( ROCKET_PATH . "/lib/cache/$backend.php");
+            require_once dirname(__FILE__) ."/$backend.php";
+            
             /** @var $cache CacheInterface */
             $cache = new $backend();
             if ($cache->supported()) {
@@ -61,7 +62,7 @@ class CacheInMemory extends CacheAbstract {
         }
         
         // require manually because we need this class while setting up autoload'ing
-        require_once( ROCKET_PATH . "/lib/cache/CacheProxy.php");
+        require_once dirname(__FILE__) ."/CacheProxy.php";
         $this->backend = new CacheProxy($cache);
     }
     

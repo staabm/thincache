@@ -20,7 +20,7 @@ class CacheProxy extends CacheAbstract
     
     public function __construct(CacheInterface $backend, $proxyStore = null, $proxyExpiretime = 3600) {
         // require manually because we need this class while setting up autoload'ing
-        require_once( ROCKET_PATH . "/lib/cache/CacheArray.php");
+        require_once dirname(__FILE__) ."/CacheArray.php";
         
         $this->backend = $backend;
         $this->proxyStore = $proxyStore ?: new CacheArray();
