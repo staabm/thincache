@@ -1,0 +1,6 @@
+{
+    "name": "staabm/thincache",
+    "require": {
+        "php": ">=5.2.0"
+    }
+}
