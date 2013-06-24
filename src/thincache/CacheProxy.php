@@ -23,7 +23,7 @@ class CacheProxy extends CacheAbstract
         require_once dirname(__FILE__) ."/CacheArray.php";
         
         $this->backend = $backend;
-        $this->proxyStore = $proxyStore ?: new CacheArray();
+        $this->proxyStore = $proxyStore ? $proxyStore : new CacheArray();
         $this->proxyExpireTime = $proxyExpiretime;
     }
     
