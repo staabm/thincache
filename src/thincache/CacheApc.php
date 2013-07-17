@@ -62,6 +62,49 @@ class CacheApc extends CacheAbstract {
     }
     
     /**
+     * increments a APC counter
+     */
+    public function increment($key, $step = 1, $expire) {
+        $key = $this->cacheKey($key);
+        
+        // try to increment a already existing counter
+        apc_inc($key, $step, $success);
+        self::$requestStats['set']++;
+        
+        // counter seems not to be existing
+        if (!$success) {
+            // init the counter using add() to circumvent race conditions
+            apc_add($key, 0, $this->calcTtl($expire));
+            self::$requestStats['set']++;
+            
+            // increment again after counter creation 
+            apc_inc($key, $step);
+            self::$requestStats['set']++;
+        }
+    }
+    
+    public function getRegex($regexKey, $limit = 100) {
+        $it = new APCIterator('user', $regexKey, APC_ITER_VALUE, $limit, APC_LIST_ACTIVE);
+        self::$requestStats['get']++;
+        
+        return (iterator_to_array($it));
+    }
+    
+    public function clearRegex($regexKey, $expiredOnly = false) {
+        
+        $it = new APCIterator('user', $regexKey);
+        
+        $now = time();
+        foreach($it as $apcKey => $item) {
+            if (!$expiredOnly || $expiredOnly && ($item['creation_time'] + $item['ttl']) < $now) {
+                // we need to call the apc-api directly, because apcKey is absolute
+                self::$requestStats['del']++;
+                apc_delete($apcKey);
+            }
+        }
+    }
+    
+    /**
      * clears the whole APC cache globally
      */
     public function clear() {
