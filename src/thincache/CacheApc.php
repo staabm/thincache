@@ -84,14 +84,17 @@ class CacheApc extends CacheAbstract {
     }
     
     public function getRegex($regexKey, $limit = 100) {
-        $it = new APCIterator('user', $regexKey, APC_ITER_VALUE, $limit, APC_LIST_ACTIVE);
+        $regexKey = $this->cacheKey($regexKey);
+        
+        $it = new APCIterator('user', $regexKey, APC_ITER_ALL, $limit, APC_LIST_ACTIVE);
         self::$requestStats['get']++;
         
         return (iterator_to_array($it));
     }
     
     public function clearRegex($regexKey, $expiredOnly = false) {
-        
+        $regexKey = $this->cacheKey($regexKey);
+                
         $it = new APCIterator('user', $regexKey);
         
         $now = time();
