@@ -18,6 +18,6 @@ class CacheKey {
     }
     
     public function __toString() {
-        return self::$namespace . $key;        
+        return self::$namespace . $this->key;        
     }
 }
