@@ -37,7 +37,14 @@ abstract class CacheAbstract implements CacheInterface {
         return $expire;
     }
     
+    /**
+     * @param string|CacheKey $key
+     * @return string
+     */
     protected function cacheKey($key) {
-        return $_SERVER['HTTP_HOST'] . "/" . APP_MODE ."@". ROCKET_REVISION ."/". $key;
+        if (!$key instanceof CacheKey) {
+            $key = new CacheKey($key);
+        }
+        return $key->__toString();
     }
 }
