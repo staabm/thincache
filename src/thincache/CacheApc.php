@@ -89,7 +89,15 @@ class CacheApc extends CacheAbstract {
         $it = new APCIterator('user', $regexKey, APC_ITER_ALL, $limit, APC_LIST_ACTIVE);
         self::$requestStats['get']++;
         
-        return (iterator_to_array($it));
+        $res = array();
+        foreach($it as $k => $v) {
+            // wrap keys into static-keys so the caller can pass those apc-keys back into the cache-api,
+            // without double-prefixing/namespacing issues
+            $v['key'] = new CacheKeyStatic($v['key']); 
+            $res[] = $v;
+        }
+        
+        return $res;
     }
     
     public function clearRegex($regexKey, $expiredOnly = false) {

@@ -1,23 +1,8 @@
-<?php
+<?php 
 
-class CacheKey {
+interface CacheKey {
     /**
-     * Global Prefix for all cache-keys to prevent naming collisions between e.g. apps, frameworks, libs.. 
-     * 
-     * @var string
+     * @return string A string representation used as an identifier within a Cache
      */
-    public static $namespace = '/';
-    
-    /**
-     * @var string
-     */
-    private $key;
-    
-    public function __construct($key) {
-        $this->key = $key;
-    }
-    
-    public function __toString() {
-        return self::$namespace . $this->key;        
-    }
+    function toKey();
 }

@@ -43,8 +43,8 @@ abstract class CacheAbstract implements CacheInterface {
      */
     protected function cacheKey($key) {
         if (!$key instanceof CacheKey) {
-            $key = new CacheKey($key);
+            $key = new CacheKeyNamespaced($key);
         }
-        return $key->__toString();
+        return $key->toKey();
     }
 }
