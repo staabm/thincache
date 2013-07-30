@@ -100,7 +100,11 @@ class CacheMemcached extends CacheAbstract
         if (self::supported()) {
             return new CacheMemcached();
         } else {
-            return new CacheMemcache();
+            $fallback = new CacheMemcache();
+            if ($fallback->supported()) {
+                return $fallback;
+            }
         }
+        throw new Exception('Missing memcached php-extension');
     }
 }
