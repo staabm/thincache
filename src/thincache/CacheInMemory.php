@@ -46,7 +46,13 @@ class CacheInMemory extends CacheAbstract {
     protected function init() {
         if ($this->backend) return;
         
-        foreach(array('CacheApc', 'CacheMemcached', 'CacheMemcache') as $backend) {
+        if (php_sapi_name() == 'cli') {
+            $supported = array('CacheMemcached', 'CacheMemcache'); 
+        } else {
+            $supported = array('CacheApc', 'CacheMemcached', 'CacheMemcache'); 
+        }
+        
+        foreach($supported as $backend) {
             // require manually because we need this class while setting up autoload'ing
             require_once dirname(__FILE__) ."/$backend.php";
             
