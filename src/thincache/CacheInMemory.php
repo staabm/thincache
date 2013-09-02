@@ -64,7 +64,7 @@ class CacheInMemory extends CacheAbstract {
         }
         
         if (!$cache || !$cache->supported()) {
-            throw new IllegalArgumentException('Caching is not supported: Missing either APC or Memcached or Memcache!');
+            throw new InvalidArgumentException('Caching is not supported: Missing either APC or Memcached or Memcache!');
         }
         
         // require manually because we need this class while setting up autoload'ing
