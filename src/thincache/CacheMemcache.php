@@ -5,6 +5,7 @@
  * 
  * NOTE: Memcache vs. Memcache_d_
  * 
+ * @deprecated Use the prefered CacheMemcached class instead
  * @author mstaab
  */
 class CacheMemcache extends CacheAbstract
