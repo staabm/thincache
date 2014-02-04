@@ -6,25 +6,19 @@
  * NOTE: Memcache vs. Memcache_d_
  * 
  * @author mstaab
+ * @deprecated
  */
 class CacheMemcached extends CacheAbstract
 {
     private static $memcache = null;
     private static $requestStats = array();
     
-    private static $persistent_id;
-    
-    public function __construct($persistent_id = 'thincache')
-    {
-        self::$persistent_id = $persistent_id;
-    }
-    
     private static function connect() {
         if (self::$memcache) {
             return;
         }
 
-        self::$memcache = new Memcached(self::$persistent_id);
+        self::$memcache = new Memcached();
         self::$memcache->addServer("127.0.0.1", 11211);
         
         self::$requestStats['get'] = 0;
@@ -98,19 +92,13 @@ class CacheMemcached extends CacheAbstract
     }
     
     /**
-     * Returns a Memcache instance. Will try certain fallbacks to get a working implementation.
+     * Returns a Memcache instance. Will try certain fallbacks to get a working implementation 
      * 
-     * To create an instance that persists between requests, use persistent_id to specify a unique ID for the instance.
-     * All instances created with the same persistent_id will share the same connection.
-     * 
-     * By default rocket uses a persistent connection.
-     * 
-     * @param string $persistent_id   
      * @return CacheInterface
      */
-    public static function factory($persistent_id = 'thincache') {
+    public static function factory() {
         if (self::supported()) {
-            return new CacheMemcached($persistent_id);
+            return new CacheMemcached();
         } else {
             $fallback = new CacheMemcache();
             if ($fallback->supported()) {
