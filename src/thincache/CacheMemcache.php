@@ -80,7 +80,9 @@ class CacheMemcache extends CacheAbstract
     }
     
     public function supported() {
-        return class_exists('Memcache', false);
+        // report the old Memcache (withoud "d") only support when the new one is not present
+        $memcached = new CacheMemcached();
+        return !$memcached->supported() && class_exists('Memcache', false);
     }
     
     public function getStats() {
