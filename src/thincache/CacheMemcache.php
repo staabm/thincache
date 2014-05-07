@@ -1,5 +1,10 @@
 <?php
 
+if (!defined('MEMCACHE_HOST')) {
+    define('MEMCACHE_HOST', "127.0.0.1");
+    define('MEMCACHE_PORT', 11211);
+}
+
 /**
  * Persist into Memcache (old php extension)
  * 
@@ -19,7 +24,7 @@ class CacheMemcache extends CacheAbstract
         }
 
         self::$memcache = new Memcache();
-        self::$memcache->addServer("127.0.0.1", 11211);
+        self::$memcache->addServer(MEMCACHE_HOST, MEMCACHE_PORT);
         
         self::$requestStats['get'] = 0;
         self::$requestStats['set'] = 0;
