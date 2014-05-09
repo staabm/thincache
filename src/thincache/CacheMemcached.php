@@ -101,8 +101,9 @@ class CacheMemcached extends CacheAbstract
      * @return CacheInterface
      */
     public static function factory() {
-        if (self::supported()) {
-            return new CacheMemcached();
+        $memcached = new CacheMemcached();
+        if ($memcached->supported()) {
+            return $memcached;
         } else {
             $fallback = new CacheMemcache();
             if ($fallback->supported()) {
