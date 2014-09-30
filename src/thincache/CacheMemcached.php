@@ -60,7 +60,9 @@ class CacheMemcached extends CacheAbstract
         $key = $this->cacheKey($key);
 		
         self::$requestStats['set']++;
-        self::$memcache->set($key, $value, $this->calcTtl($expire));
+        if (self::$memcache->set($key, $value, $this->calcTtl($expire)) === false) {
+            throw new CacheException('Unable to set value using key '. $key);
+        }
     }
     
     /**
@@ -73,7 +75,9 @@ class CacheMemcached extends CacheAbstract
         $key = $this->cacheKey($key);
 		
         self::$requestStats['del']++;
-        self::$memcache->delete($key);
+        if (self::$memcache->delete($key) === false) {
+            throw new CacheException('Unable to delete value using key '. $key);
+        }
     }
     
     public function supported() {
