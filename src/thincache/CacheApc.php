@@ -68,7 +68,7 @@ class CacheApc extends CacheAbstract {
         $key = $this->cacheKey($key);
         
         // try to increment a already existing counter
-        apc_inc($key, $step, $success);
+        $val = apc_inc($key, $step, $success);
         self::$requestStats['set']++;
         
         // counter seems not to be existing
@@ -78,9 +78,14 @@ class CacheApc extends CacheAbstract {
             self::$requestStats['set']++;
             
             // increment again after counter creation 
-            apc_inc($key, $step);
+            $val = apc_inc($key, $step, $success);
             self::$requestStats['set']++;
         }
+        
+        if ($success) {
+            return $val;
+        }
+        return false;
     }
     
     public function getRegex($regexKey, $limit = 100) {
