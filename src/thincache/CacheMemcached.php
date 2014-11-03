@@ -76,7 +76,9 @@ class CacheMemcached extends CacheAbstract
 		
         self::$requestStats['del']++;
         if (self::$memcache->delete($key) === false) {
-            throw new CacheException('Unable to delete value using key '. $key);
+            if (self::$memcache->getResultCode() != Memcached::RES_NOTFOUND) {
+                throw new CacheException('Unable to delete value using key '. $key .', error '. self::$memcache->getResultCode());
+            }
         }
     }
     

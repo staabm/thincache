@@ -83,9 +83,10 @@ class CacheMemcache extends CacheAbstract
         $key = $this->cacheKey($key);
 		
         self::$requestStats['del']++;
-        if (self::$memcache->delete($key) === false) {
-            throw new CacheException('Unable to delete value using key '. $key);
-        }
+        // the old memcache API does not provide a mean
+        // to decide whether a delete failed, because of a missing key or a
+        // invalid parameter, therefore we cannot do error checking like CacheMemcached does.
+        self::$memcache->delete($key);
     }
     
     public function supported() {
