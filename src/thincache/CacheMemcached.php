@@ -61,7 +61,7 @@ class CacheMemcached extends CacheAbstract
 		
         self::$requestStats['set']++;
         if (self::$memcache->set($key, $value, $this->calcTtl($expire)) === false) {
-            throw new CacheException('Unable to set value using key '. $key .', ResultCode:'. self::$memcache->getResultCode());
+            throw new CacheException('Unable to set value using key '. $key .', ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
         }
     }
     
@@ -77,7 +77,7 @@ class CacheMemcached extends CacheAbstract
         self::$requestStats['del']++;
         if (self::$memcache->delete($key) === false) {
             if (self::$memcache->getResultCode() != Memcached::RES_NOTFOUND) {
-                throw new CacheException('Unable to delete value using key '. $key .', ResultCode:'. self::$memcache->getResultCode());
+                throw new CacheException('Unable to delete value using key '. $key .', ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
             }
         }
     }
