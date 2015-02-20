@@ -1,1 +1,1 @@
-This very small cache layer was built because of the lack of PHP5.2 compilant caching libraries.
+This small cache abstraction layer was built because of the lack of PHP5.2 compilant caching libraries.
