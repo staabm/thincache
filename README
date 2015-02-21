@@ -4,4 +4,4 @@ Supported features:
 - use different backends, each with a dedicated driver.
 - unified api across backends.
 - proxying a cache driver; for transparent proxying of slow backends.
-- chaining several cache drivers; distributes content into using several drivers.
+- chaining several cache drivers; distributes content into several backends.
