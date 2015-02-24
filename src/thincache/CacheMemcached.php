@@ -23,7 +23,9 @@ class CacheMemcached extends CacheAbstract
         }
 
         self::$memcache = new Memcached();
-        self::$memcache->addServer(MEMCACHE_HOST, MEMCACHE_PORT);
+        if (!self::$memcache->addServer(MEMCACHE_HOST, MEMCACHE_PORT)) {
+            throw new CacheException('Unable to add server '. MEMCACHE_HOST .' on port '. MEMCACHE_PORT .', ResultCode:'. self::$memcache->getResultCode());
+        }
         
         self::$requestStats['get'] = 0;
         self::$requestStats['set'] = 0;
