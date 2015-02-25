@@ -1,7 +1,9 @@
 This small cache abstraction layer was built because of the lack of PHP5.2 compilant caching libraries.
 
+Requires PHP 5.2+
+
 Supported features:
-- use different backends, each with a dedicated driver.
-- unified api across backends.
-- proxying a cache driver; for transparent proxying of slow backends.
-- chaining several cache drivers; distributes content into several backends.
+- use different backends, each with a dedicated driver
+- unified api across backends
+- proxying a cache driver; for transparent proxying of slow backends
+- chaining several cache drivers; distributes content into several backends
