@@ -132,10 +132,14 @@ class CacheApc extends CacheAbstract {
         $apcIt = new APCIterator('user');
         $size = $apcIt->getTotalSize();
         
+        // support apc and old versions of apcu
+        $hits = !empty($cinfo['num_hits']) ? $cinfo['num_hits'] : $cinfo['nhits'];
+        $misses = !empty($cinfo['num_misses']) ? $cinfo['num_misses'] : $cinfo['nmisses'];
+        
         $stats = array();
         $stats['size'] = $size;
-        $stats['hits'] = $cinfo['num_hits'];
-        $stats['misses'] = $cinfo['num_misses'];
+        $stats['hits'] = $hits;
+        $stats['misses'] = $misses;
         $stats['more']   = 'r/w/d='. self::$requestStats['get'] . '/'.self::$requestStats['set']. '/'.self::$requestStats['del'];
                 
         return $stats;
