@@ -33,6 +33,17 @@ class CacheMemcached extends CacheAbstract
     }
     
     /**
+     * @param string|CacheKey $key
+     * @return string
+     */
+    protected function cacheKey($key) {
+        $stringKey = parent::cacheKey($key);
+
+        // memcache doesn't like spaces in cache-keys
+        return str_replace(' ', '_', $stringKey);
+    }    
+    
+    /**
      * (non-PHPdoc)
      * @see Cache::get()
      */
