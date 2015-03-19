@@ -79,7 +79,7 @@ class CacheMemcache extends CacheAbstract
         }
 		
         self::$requestStats['set']++;
-        if (self::$memcache->set($key, $value, false, $this->calcTtl($expire)) === false) {
+        if (self::$memcache->set($key, $value, 0, $this->calcTtl($expire)) === false) {
             throw new CacheException('Unable to set value using key '. $key);
         }
     }
