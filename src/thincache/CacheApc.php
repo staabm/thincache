@@ -133,8 +133,18 @@ class CacheApc extends CacheAbstract {
         $size = $apcIt->getTotalSize();
         
         // support apc and old versions of apcu
-        $hits = !empty($cinfo['num_hits']) ? $cinfo['num_hits'] : $cinfo['nhits'];
-        $misses = !empty($cinfo['num_misses']) ? $cinfo['num_misses'] : $cinfo['nmisses'];
+        $hits = $misses = 0;
+        
+        if (!empty($cinfo['num_hits'])) {
+            $hits = $cinfo['num_hits'];
+        } else if (!empty($cinfo['nhits'])) {
+            $hits = $cinfo['nhits'];
+        }
+        if (!empty($cinfo['num_misses'])) {
+            $misses = $cinfo['num_misses'];
+        } else if (!empty($cinfo['nmisses'])) {
+            $misses = $cinfo['nmisses'];
+        }
         
         $stats = array();
         $stats['size'] = $size;
