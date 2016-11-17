@@ -52,10 +52,7 @@ class CacheInMemory extends CacheAbstract {
             $supported = array('CacheApc', 'CacheMemcached', 'CacheMemcache'); 
         }
         
-        foreach($supported as $backend) {
-            // require manually because we need this class while setting up autoload'ing
-            require_once dirname(__FILE__) ."/$backend.php";
-            
+        foreach($supported as $backend) {            
             /** @var $cache CacheInterface */
             $cache = new $backend();
             if ($cache->supported()) {
@@ -67,8 +64,6 @@ class CacheInMemory extends CacheAbstract {
             throw new InvalidArgumentException('Caching is not supported: Missing either APC or Memcached or Memcache!');
         }
         
-        // require manually because we need this class while setting up autoload'ing
-        require_once dirname(__FILE__) ."/CacheProxy.php";
         $this->backend = new CacheProxy($cache);
     }
     
