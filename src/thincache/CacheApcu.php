@@ -1,9 +1,6 @@
 <?php
 
-/**
- * @deprecated use CacheApcu instead
- */
-class CacheApc extends CacheAbstract {
+class CacheApcu extends CacheAbstract {
     private static $requestStats = array();
 
     private static $supported = null;
@@ -26,7 +23,7 @@ class CacheApc extends CacheAbstract {
         $success = false;
 
         self::$requestStats['get']++;
-        $val = apc_fetch($key, $success);
+        $val = apcu_fetch($key, $success);
         if ($success) {
             return $val;
         }
@@ -42,7 +39,7 @@ class CacheApc extends CacheAbstract {
         $key = $this->cacheKey($key);
 
         self::$requestStats['set']++;
-        apc_store($key, $value, $this->calcTtl($expire));
+        apcu_store($key, $value, $this->calcTtl($expire));
     }
 
     /**
@@ -53,41 +50,35 @@ class CacheApc extends CacheAbstract {
         $key = $this->cacheKey($key);
 
         self::$requestStats['del']++;
-        apc_delete($key);
+        apcu_delete($key);
     }
 
     public function supported() {
         if (self::$supported === null) {
-            // on ubuntu16 we got zend heap corruptions with APCIterator
-            // disable this code path (and the feature until php-src fixed this issue)
-            if (PHP_VERSION_ID >= 70000) {
-                self::$supported = false;
-            } else {
-                self::$supported = extension_loaded('apc') && ini_get('apc.enabled') && class_exists('APCIterator', false);
-            }
+            self::$supported = extension_loaded('apcu') && ini_get('apc.enabled') && class_exists('APCUIterator', false);
         }
 
         return self::$supported;
     }
 
     /**
-     * increments a APC counter
+     * increments a counter
      */
     public function increment($key, $step = 1, $expire) {
         $key = $this->cacheKey($key);
 
         // try to increment a already existing counter
-        $val = apc_inc($key, $step, $success);
+        $val = apcu_inc($key, $step, $success);
         self::$requestStats['set']++;
 
         // counter seems not to be existing
         if (!$success) {
             // init the counter using add() to circumvent race conditions
-            apc_add($key, 0, $this->calcTtl($expire));
+            apcu_add($key, 0, $this->calcTtl($expire));
             self::$requestStats['set']++;
 
             // increment again after counter creation
-            $val = apc_inc($key, $step, $success);
+            $val = apcu_inc($key, $step, $success);
             self::$requestStats['set']++;
         }
 
@@ -100,7 +91,7 @@ class CacheApc extends CacheAbstract {
     public function getRegex($regexKey, $limit = 100) {
         $regexKey = $this->cacheKey($regexKey);
 
-        $it = new APCIterator('user', $regexKey, APC_ITER_ALL, $limit, APC_LIST_ACTIVE);
+        $it = new APCUIterator($regexKey, APC_ITER_ALL, $limit, APC_LIST_ACTIVE);
         self::$requestStats['get']++;
 
         $res = array();
@@ -117,28 +108,28 @@ class CacheApc extends CacheAbstract {
     public function clearRegex($regexKey, $expiredOnly = false) {
         $regexKey = $this->cacheKey($regexKey);
 
-        $it = new APCIterator('user', $regexKey);
+        $it = new APCUIterator($regexKey);
 
         $now = time();
         foreach($it as $apcKey => $item) {
             if (!$expiredOnly || $expiredOnly && ($item['creation_time'] + $item['ttl']) < $now) {
                 // we need to call the apc-api directly, because apcKey is absolute
                 self::$requestStats['del']++;
-                apc_delete($apcKey);
+                apcu_delete($apcKey);
             }
         }
     }
 
     /**
-     * clears the whole APC cache globally
+     * clears the whole cache globally
      */
     public function clear() {
-        apc_clear_cache('user');
+        apcu_clear_cache();
     }
 
     public function getStats() {
-        $cinfo = apc_cache_info('user', true);
-        $apcIt = new APCIterator('user');
+        $cinfo = apcu_cache_info(true);
+        $apcIt = new APCUIterator();
         $size = $apcIt->getTotalSize();
 
         // support apc and old versions of apcu
