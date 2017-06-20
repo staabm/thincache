@@ -10,7 +10,7 @@
 class CacheInApc extends CacheAbstract {
 
     /**
-     * @var CacheApcu|CacheApc
+     * @var CacheApcu|CacheApc|null
      */
     private $backend;
 
@@ -91,22 +91,15 @@ class CacheInApc extends CacheAbstract {
     protected function init() {
         if ($this->backend) return;
 
-        if (php_sapi_name() == 'cli') {
-            $supported = array();
-        } else {
-            $supported = array('CacheApcu', 'CacheApc');
-        }
+        $supported = array('CacheApcu', 'CacheApc');
 
+        $cache = null;
         foreach($supported as $backend) {
             /** @var $cache CacheInterface */
             $cache = new $backend();
             if ($cache->supported()) {
                 break;
             }
-        }
-
-        if (!$cache || !$cache->supported()) {
-            throw new InvalidArgumentException('Caching is not supported: Missing either APC or APCu!');
         }
 
         // as of now we cannot use CacheProxy because of the greater interface of APC* required
@@ -116,6 +109,6 @@ class CacheInApc extends CacheAbstract {
     public function supported() {
         $this->init();
 
-        return true;
+        return (bool) $this->backend;
     }
 }
