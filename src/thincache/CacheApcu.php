@@ -55,7 +55,13 @@ class CacheApcu extends CacheAbstract {
 
     public function supported() {
         if (self::$supported === null) {
-            self::$supported = extension_loaded('apcu') && ini_get('apc.enabled') && class_exists('APCUIterator', false);
+            $supported = extension_loaded('apcu') && class_exists('APCUIterator', false);
+
+            if (PHP_SAPI === 'cli') {
+                self::$supported = $supported && ini_get('apc.enable_cli');
+            } else {
+                self::$supported = $supported && ini_get('apc.enable');
+            }
         }
 
         return self::$supported;

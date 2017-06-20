@@ -63,7 +63,13 @@ class CacheApc extends CacheAbstract {
             if (PHP_VERSION_ID >= 70000) {
                 self::$supported = false;
             } else {
-                self::$supported = extension_loaded('apc') && ini_get('apc.enabled') && class_exists('APCIterator', false);
+                $supported = extension_loaded('apc') && class_exists('APCIterator', false);
+
+                if (PHP_SAPI === 'cli') {
+                    self::$supported = $supported && ini_get('apc.enable_cli');
+                } else {
+                    self::$supported = $supported && ini_get('apc.enable');
+                }
             }
         }
 
