@@ -60,7 +60,7 @@ class CacheApcu extends CacheAbstract {
             if (PHP_SAPI === 'cli') {
                 self::$supported = $supported && ini_get('apc.enable_cli');
             } else {
-                self::$supported = $supported && ini_get('apc.enable');
+                self::$supported = $supported && ini_get('apc.enabled');
             }
         }
 
