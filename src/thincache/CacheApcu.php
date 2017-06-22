@@ -135,8 +135,6 @@ class CacheApcu extends CacheAbstract {
 
     public function getStats() {
         $cinfo = apcu_cache_info(true);
-        $apcIt = new APCUIterator();
-        $size = $apcIt->getTotalSize();
 
         // support apc and old versions of apcu
         $hits = $misses = 0;
@@ -153,7 +151,7 @@ class CacheApcu extends CacheAbstract {
         }
 
         $stats = array();
-        $stats['size'] = $size;
+        $stats['size'] = 'n/a';
         $stats['hits'] = $hits;
         $stats['misses'] = $misses;
         $stats['more']   = 'r/w/d='. self::$requestStats['get'] . '/'.self::$requestStats['set']. '/'.self::$requestStats['del'];
