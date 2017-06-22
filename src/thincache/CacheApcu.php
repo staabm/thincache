@@ -151,7 +151,7 @@ class CacheApcu extends CacheAbstract {
         }
 
         $stats = array();
-        $stats['size'] = 'n/a';
+        $stats['size'] = null;
         $stats['hits'] = $hits;
         $stats['misses'] = $misses;
         $stats['more']   = 'r/w/d='. self::$requestStats['get'] . '/'.self::$requestStats['set']. '/'.self::$requestStats['del'];
