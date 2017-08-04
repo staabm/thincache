@@ -103,10 +103,11 @@ class CacheMemcached extends CacheAbstract
     }
     
     /**
-     * @param unknown $regexKey
-     * @param number $limit
-     * @throws CacheException
-     * @return CacheKeyStatic[]
+     * Returns all cached entries which key matches the given regexKey
+     *
+     * @param string $regexKey
+     * @param int $limit
+     * @return array
      *
      * @since 0.9.0
      */

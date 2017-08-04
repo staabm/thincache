@@ -33,7 +33,11 @@ class CacheInApc extends CacheAbstract {
     }
 
     /**
-     * APC* specific APIs
+     * Returns all cached entries which key matches the given regexKey
+     *
+     * @param string $regexKey
+     * @param int $limit
+     * @return array
      *
      * @see CacheApcu#getRegex(), CacheApc#getRegex()
      */

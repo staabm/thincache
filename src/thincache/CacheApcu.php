@@ -88,6 +88,13 @@ class CacheApcu extends CacheAbstract {
         return false;
     }
 
+    /**
+     * Returns all cached entries which key matches the given regexKey
+     *
+     * @param string $regexKey
+     * @param int $limit
+     * @return array
+     */
     public function getRegex($regexKey, $limit = 100) {
         $regexKey = $this->cacheKey($regexKey);
 
