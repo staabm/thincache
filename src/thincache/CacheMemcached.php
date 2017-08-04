@@ -120,32 +120,39 @@ class CacheMemcached extends CacheAbstract
         if (false === $keys) {
             throw new CacheException('Unable to fetch all keys, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
         }
-        self::$memcache->getDelayed($keys);
-        if (self::$memcache->getResultCode() != MemCached::RES_SUCCESS) {
-            throw new CacheException('Unable to get delayed keys, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
-        }
-        
-        self::$requestStats['get']++;
         
         $i = 0;
-        $res = array();
-        while ($entry = self::$memcache->fetch()) {
-            if (self::$memcache->getResultCode() != MemCached::RES_SUCCESS) {
-                throw new CacheException('Unable to fetch all values, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
-            }
-            
-            if (preg_match($regexKey, $entry['key'])) {
-                // wrap keys into static-keys so the caller can pass those apc-keys back into the cache-api,
-                // without double-prefixing/namespacing issues
-                $entry['key'] = new CacheKeyStatic($entry['key']);
-                $res[] = $entry;
+        $matchedKeys = array();
+        foreach($keys as $key) {
+            if (preg_match($regexKey, $key)) {
+                $matchedKeys[] = $key;
                 $i++;
-                
             }
             
             if ($i == $limit) {
                 break;
             }
+        }
+        
+        if (empty($matchedKeys)) {
+            return array();
+        }
+        
+        $allEntries = self::$memcache->getMulti($matchedKeys);
+        if (self::$memcache->getResultCode() != MemCached::RES_SUCCESS) {
+            throw new CacheException('Unable to fetch all values, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
+        }
+        
+        self::$requestStats['get']++;
+        
+        $res = array();
+        foreach($allEntries as $key => $val) {
+            // wrap keys into static-keys so the caller can pass those apc-keys back into the cache-api,
+            // without double-prefixing/namespacing issues
+            $res[] = array(
+                'key' => new CacheKeyStatic($key),
+                'value' => $val
+            );
         }
         
         return $res;
