@@ -7,9 +7,9 @@ if (!defined('MEMCACHE_HOST')) {
 
 /**
  * Persist into Memcached (newer php extension)
- * 
+ *
  * NOTE: Memcache vs. Memcache_d_
- * 
+ *
  * @author mstaab
  */
 class CacheMemcached extends CacheAbstract
@@ -41,7 +41,7 @@ class CacheMemcached extends CacheAbstract
 
         // memcache doesn't like spaces in cache-keys
         return str_replace(' ', '_', $stringKey);
-    }    
+    }
     
     /**
      * (non-PHPdoc)
@@ -79,9 +79,86 @@ class CacheMemcached extends CacheAbstract
     }
     
     /**
-     * (non-PHPdoc)
-     * @see Cache::set()
+     * increments a counter
+     *
+     * @param string|CacheKey $key
+     * @param int $step
+     * @param int $expire
+     *
+     * @return int The current value of the counter. Returns 0 when the counter has just been created.
+     *
+     * @since 0.9.0
      */
+    public function increment($key, $step = 1, $expire) {
+        $this->connect();
+        
+        $key = $this->cacheKey($key);
+        
+        self::$requestStats['set']++;
+        
+        $binProtocol = self::$memcache->getOption(Memcached::OPT_BINARY_PROTOCOL);
+        // we need the binary protocol to get support for 4 args in increment().
+        // ASCII protocoll (default) only supports 2 args (misses default_initial, expiry).
+        self::$memcache->setOption(Memcached::OPT_BINARY_PROTOCOL, true);
+        $val = self::$memcache->increment($key, $step, 0, $this->calcTtl($expire));
+        self::$memcache->setOption(Memcached::OPT_BINARY_PROTOCOL, $binProtocol);
+        
+        if (self::$memcache->getResultCode() != MemCached::RES_SUCCESS) {
+            throw new CacheException('Unable to increment value using key '. $key .', ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
+        }
+        
+        return $val;
+    }
+    
+    /**
+     * @param unknown $regexKey
+     * @param number $limit
+     * @throws CacheException
+     * @return CacheKeyStatic[]
+     *
+     * @since 0.9.0
+     */
+    public function getRegex($regexKey, $limit = 100) {
+        $this->connect();
+        
+        $regexKey = $this->cacheKey($regexKey);
+        
+        $keys = self::$memcache->getAllKeys();
+        if (false === $keys) {
+            throw new CacheException('Unable to fetch all keys, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
+        }
+        self::$memcache->getDelayed($keys);
+        if (self::$memcache->getResultCode() != MemCached::RES_SUCCESS) {
+            throw new CacheException('Unable to get delayed keys, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
+        }
+        
+        $allEntries = self::$memcache->fetchAll();
+        if (self::$memcache->getResultCode() != MemCached::RES_SUCCESS) {
+            throw new CacheException('Unable to fetch all values, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
+        }
+        
+        self::$requestStats['get']++;
+        
+        $i = 0;
+        $res = array();
+        foreach($allEntries as $entry) {
+            if (preg_match($regexKey, $entry['key'])) {
+                // wrap keys into static-keys so the caller can pass those apc-keys back into the cache-api,
+                // without double-prefixing/namespacing issues
+                $entry['key'] = new CacheKeyStatic($entry['key']);
+                $res[] = $entry;
+                $i++;
+                
+            }
+            
+            if ($i == $limit) {
+                break;
+            }
+        }
+        
+        return $res;
+    }
+    
     public function delete($key) {
         $this->connect();
         
@@ -107,7 +184,7 @@ class CacheMemcached extends CacheAbstract
         $memStats = current(self::$memcache->getStats());
         
         $stats['hits']   = $memStats['get_hits'];
-        $stats['misses'] = $memStats['get_misses']; 
+        $stats['misses'] = $memStats['get_misses'];
         $stats['size']   = $memStats['bytes'];
         $stats['more']   = 'r/w/d='. self::$requestStats['get'] . '/'.self::$requestStats['set']. '/'.self::$requestStats['del'];
                         
@@ -115,8 +192,8 @@ class CacheMemcached extends CacheAbstract
     }
     
     /**
-     * Returns a Memcache instance. Will try certain fallbacks to get a working implementation 
-     * 
+     * Returns a Memcache instance. Will try certain fallbacks to get a working implementation
+     *
      * @return CacheInterface
      */
     public static function factory() {
