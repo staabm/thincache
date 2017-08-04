@@ -125,16 +125,15 @@ class CacheMemcached extends CacheAbstract
             throw new CacheException('Unable to get delayed keys, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
         }
         
-        $allEntries = self::$memcache->fetchAll();
-        if (self::$memcache->getResultCode() != MemCached::RES_SUCCESS) {
-            throw new CacheException('Unable to fetch all values, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
-        }
-        
         self::$requestStats['get']++;
         
         $i = 0;
         $res = array();
-        foreach($allEntries as $entry) {
+        while ($entry = self::$memcache->fetch()) {
+            if (self::$memcache->getResultCode() != MemCached::RES_SUCCESS) {
+                throw new CacheException('Unable to fetch all values, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
+            }
+            
             if (preg_match($regexKey, $entry['key'])) {
                 // wrap keys into static-keys so the caller can pass those apc-keys back into the cache-api,
                 // without double-prefixing/namespacing issues
