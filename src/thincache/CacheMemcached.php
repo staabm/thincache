@@ -43,10 +43,6 @@ class CacheMemcached extends CacheAbstract
         return str_replace(' ', '_', $stringKey);
     }
     
-    /**
-     * (non-PHPdoc)
-     * @see Cache::get()
-     */
     public function get($key, $default = null) {
         $this->connect();
         
@@ -63,10 +59,6 @@ class CacheMemcached extends CacheAbstract
         return $val;
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see Cache::set()
-     */
     public function set($key, $value, $expire) {
         $this->connect();
         

@@ -2,15 +2,11 @@
 
 /**
  * Abstract Baseclass for CacheInterface implementing classes
- *  
+ *
  * @author mstaab
  */
 
 abstract class CacheAbstract implements CacheInterface {
-    /**
-     * (non-PHPdoc)
-     * @see CacheInterface::lazyLookup()
-     */
     public function lazyLookup($key, $callable, $expire) {
         $val = $this->get( $key, 'clx-cache-null' );
     
@@ -26,13 +22,13 @@ abstract class CacheAbstract implements CacheInterface {
 
     /**
      * Calculate from the given timestamp/ttl the remaining ttl.
-     * 
+     *
      * @param int $expire
      * @return int
      */
     protected function calcTtl($expire) {
         if ($expire > 2592000) {
-            return $expire - time(); 
+            return $expire - time();
         }
         return $expire;
     }

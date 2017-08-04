@@ -24,10 +24,6 @@ class CacheProxy extends CacheAbstract
         $this->proxyExpireTime = $proxyExpiretime;
     }
     
-    /**
-     * (non-PHPdoc)
-     * @see CacheInterface::get()
-     */
     public function get($key, $default = null)
     {
         // lookup proxyStore for fast exit
@@ -45,20 +41,12 @@ class CacheProxy extends CacheAbstract
         return $val;
     }
     
-    /**
-     * (non-PHPdoc)
-     * @see CacheInterface::set()
-     */
     public function set($key, $value, $expire)
     {
         $this->proxyStore->set($key, $value, $expire);
         $this->backend->set($key, $value, $expire);
     }
     
-    /**
-     * (non-PHPdoc)
-     * @see CacheInterface::delete()
-     */
     public function delete($key)
     {
         $this->proxyStore->delete($key);
@@ -67,5 +55,5 @@ class CacheProxy extends CacheAbstract
     
     public function supported() {
         return $this->backend->supported();
-    }   
+    }
 }

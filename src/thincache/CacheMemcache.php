@@ -7,9 +7,9 @@ if (!defined('MEMCACHE_HOST')) {
 
 /**
  * Persist into Memcache (old php extension)
- * 
+ *
  * NOTE: Memcache vs. Memcache_d_
- * 
+ *
  * @deprecated Use the prefered CacheMemcached class instead
  * @author mstaab
  */
@@ -30,7 +30,7 @@ class CacheMemcache extends CacheAbstract
         self::$requestStats['set'] = 0;
         self::$requestStats['del'] = 0;
         
-    	// make sure connection will be closed on request shutdown 
+    	// make sure connection will be closed on request shutdown
 	    register_shutdown_function(array(__CLASS__, 'close'));
     }
     
@@ -43,12 +43,8 @@ class CacheMemcache extends CacheAbstract
 
         // memcache doesn't like spaces in cache-keys
         return str_replace(' ', '_', $stringKey);
-    }    
+    }
     
-    /**
-     * (non-PHPdoc)
-     * @see Cache::get()
-     */
     public function get($key, $default = null) {
         $this->connect();
         
@@ -64,10 +60,6 @@ class CacheMemcache extends CacheAbstract
         return $default;
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see Cache::set()
-     */
     public function set($key, $value, $expire) {
         $this->connect();
         
@@ -84,10 +76,6 @@ class CacheMemcache extends CacheAbstract
         }
     }
     
-    /**
-     * (non-PHPdoc)
-     * @see Cache::set()
-     */
     public function delete($key) {
         $this->connect();
         
@@ -112,7 +100,7 @@ class CacheMemcache extends CacheAbstract
         
         $memStats = self::$memcache->getStats();
         $stats['hits']   = $memStats['get_hits'];
-        $stats['misses'] = $memStats['get_misses']; 
+        $stats['misses'] = $memStats['get_misses'];
         $stats['size']   = $memStats['bytes'];
         $stats['more']   = 'r/w/d='. self::$requestStats['get'] . '/'.self::$requestStats['set']. '/'.self::$requestStats['del'];
                 
@@ -125,6 +113,6 @@ class CacheMemcache extends CacheAbstract
     public function close() {
          if (self::$memcache) {
              self::$memcache->close();
-         }       
+         }
     }
 }

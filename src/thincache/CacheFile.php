@@ -2,9 +2,9 @@
 
 /**
  * Per Application file cache.
- * 
+ *
  * Most of the code taken from symfony1
- * 
+ *
  * @author mstaab
  */
 class CacheFile extends CacheAbstract
@@ -13,10 +13,6 @@ class CacheFile extends CacheAbstract
     const READ_TIMEOUT = 2;
     const READ_LAST_MODIFIED = 4;
     
-    /**
-     * (non-PHPdoc)
-     * @see CacheInterface::get()
-     */
     public function get($key, $default = null)
     {
         $key = $this->cacheKey($key);
@@ -35,10 +31,6 @@ class CacheFile extends CacheAbstract
         return $data [self::READ_DATA];
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see CacheInterface::set()
-     */
     public function set($key, $value, $expire)
     {
         $key = $this->cacheKey($key);
@@ -46,10 +38,6 @@ class CacheFile extends CacheAbstract
         return $this->write($this->getFilePath($key), $value, time() + $this->calcTtl($expire));
     }
     
-    /**
-     * (non-PHPdoc)
-     * @see CacheInterface::delete()
-     */
     public function delete($key)
     {
         $key = $this->cacheKey($key);
@@ -82,10 +70,10 @@ class CacheFile extends CacheAbstract
      *            CacheFile::READ_TIMEOUT: The timeout
      *            CacheFile::READ_LAST_MODIFIED: The last modification
      *            timestamp
-     *            
+     *
      * @return array the (meta)data of the cache file. E.g.
      *         $data[CacheFile::READ_DATA]
-     *        
+     *
      * @throws CacheException
      */
     protected function read($path, $type = self::READ_DATA)
@@ -125,9 +113,9 @@ class CacheFile extends CacheAbstract
      *            The data to put in cache
      * @param integer $timeout
      *            The timeout timestamp
-     *            
+     *
      * @return boolean true if ok, otherwise false
-     *        
+     *
      * @throws CacheException
      */
     protected function write($path, $data, $timeout)

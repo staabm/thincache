@@ -3,14 +3,14 @@
 /**
  * Very simple Array backed Cache implementation,
  * which is mostly usefull to prevent multiple calls to the cache-backend with the same key.
- * 
+ *
  * This Cache backed does not prefix your cache-keys to prevent name collisions,
- * because it cannot collide with concurrent request as no resources are shared.  
- * 
+ * because it cannot collide with concurrent request as no resources are shared.
+ *
  * Be carefull when using this cache, because it prevents objects from beeing garbage collected!
- * 
+ *
  * Note: The backing store is not persisted between requests!
- * 
+ *
  * @author mstaab
  */
 class CacheArray extends CacheAbstract
@@ -22,10 +22,6 @@ class CacheArray extends CacheAbstract
      */
     private $store = array();
     
-    /**
-     * (non-PHPdoc)
-     * @see CacheInterface::get()
-     */
     public function get($key, $default = null)
     {
         // we optimize for performance, therefore use isset() and not array_key_exists().
@@ -39,10 +35,6 @@ class CacheArray extends CacheAbstract
         return $default;
     }
     
-    /**
-     * (non-PHPdoc)
-     * @see CacheInterface::set()
-     */
     public function set($key, $value, $expire)
     {
         // we use isset() in #get() therefore we need a magic marker for NULLs
@@ -52,10 +44,6 @@ class CacheArray extends CacheAbstract
         $this->store[$key] = $value;
     }
     
-    /**
-     * (non-PHPdoc)
-     * @see CacheInterface::delete()
-     */
     public function delete($key)
     {
         unset($this->store[$key]);
@@ -63,5 +51,5 @@ class CacheArray extends CacheAbstract
     
     public function supported() {
         return true;
-    }    
+    }
 }

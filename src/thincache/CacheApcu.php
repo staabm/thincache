@@ -13,10 +13,6 @@ class CacheApcu extends CacheAbstract {
         }
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see Cache::get()
-     */
     public function get($key, $default = null) {
         $key = $this->cacheKey($key);
 
@@ -31,10 +27,6 @@ class CacheApcu extends CacheAbstract {
         return $default;
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see Cache::set()
-     */
     public function set($key, $value, $expire) {
         $key = $this->cacheKey($key);
 
@@ -42,10 +34,6 @@ class CacheApcu extends CacheAbstract {
         apcu_store($key, $value, $this->calcTtl($expire));
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see Cache::delete()
-     */
     public function delete($key) {
         $key = $this->cacheKey($key);
 
@@ -69,6 +57,12 @@ class CacheApcu extends CacheAbstract {
 
     /**
      * increments a counter
+     *
+     * @param string|CacheKey $key
+     * @param int $step
+     * @param int $expire
+     *
+     * @return false|int False on error, otherwise the current value of the counter. Returns 0 when the counter has been created.
      */
     public function increment($key, $step = 1, $expire) {
         $key = $this->cacheKey($key);

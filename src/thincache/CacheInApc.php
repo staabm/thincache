@@ -14,30 +14,18 @@ class CacheInApc extends CacheAbstract {
      */
     private $backend;
 
-    /**
-     * (non-PHPdoc)
-     * @see Cache::get()
-     */
     public function get($key, $default = null) {
         $this->init();
 
         return $this->backend->get($key, $default);
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see Cache::set()
-     */
     public function set($key, $value, $expire) {
         $this->init();
 
         return $this->backend->set($key, $value, $expire);
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see Cache::delete()
-     */
     public function delete($key) {
         $this->init();
 
