@@ -92,7 +92,7 @@ class CacheMemcached extends CacheAbstract
         // we need the binary protocol to get support for 4 args in increment().
         // ASCII protocoll (default) only supports 2 args (misses default_initial, expiry).
         self::$memcache->setOption(Memcached::OPT_BINARY_PROTOCOL, true);
-        $val = self::$memcache->increment($key, $step, 0, $this->calcTtl($expire));
+        $val = self::$memcache->increment($key, $step, 1, $this->calcTtl($expire));
         self::$memcache->setOption(Memcached::OPT_BINARY_PROTOCOL, $binProtocol);
         
         if (self::$memcache->getResultCode() != MemCached::RES_SUCCESS) {
