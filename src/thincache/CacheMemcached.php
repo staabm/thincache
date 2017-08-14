@@ -121,18 +121,8 @@ class CacheMemcached extends CacheAbstract
             throw new CacheException('Unable to fetch all keys, ResultCode:'. self::$memcache->getResultCode() .', Error:'. self::$memcache->getResultMessage());
         }
         
-        $i = 0;
-        $matchedKeys = array();
-        foreach($keys as $key) {
-            if (preg_match($regexKey, $key)) {
-                $matchedKeys[] = $key;
-                $i++;
-            }
-            
-            if ($i == $limit) {
-                break;
-            }
-        }
+        $keys = preg_grep($regexKey, $keys);
+        $matchedKeys = array_slice($keys, 0, $limit);
         
         if (empty($matchedKeys)) {
             return array();
