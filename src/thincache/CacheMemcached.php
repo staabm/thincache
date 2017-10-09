@@ -137,11 +137,25 @@ class CacheMemcached extends CacheAbstract
         }
         
         $allEntries = self::$memcache->getMulti($matchedKeys);
-        if (self::$memcache->getResultCode() != MemCached::RES_SUCCESS) {
-            throw new CacheException('Unable to fetch all values, ResultCode:' . self::$memcache->getResultCode() . ', Error:' . self::$memcache->getResultMessage() . print_r($matchedKeys, true) . print_r($allEntries, true));
+        if (self::$memcache->getResultCode() !== MemCached::RES_SUCCESS) {
+            // getAllKeys() is non-atomic and sometimes returns keys which no longer exists at getMulti() time.
+            // in such case retrieve key by key and filter out the erroneous ones.
+            if (self::$memcache->getResultCode() === MemCached::RES_NOTFOUND) {
+                $allEntries = array();
+                foreach ($matchedKeys as $key) {
+                    $val = self::$memcache->get($key);
+                    
+                    if (self::$memcache->getResultCode() === MemCached::RES_SUCCESS) {
+                        $allEntries[$key] = $val;
+                        self::$requestStats['get'] ++;
+                    }
+                }
+            } else {
+                throw new CacheException('Unable to fetch all values, ResultCode:' . self::$memcache->getResultCode() . ', Error:' . self::$memcache->getResultMessage() . print_r($matchedKeys, true) . print_r($allEntries, true));
+            }
+        } else {
+            self::$requestStats['get'] ++;
         }
-        
-        self::$requestStats['get'] ++;
         
         $res = array();
         foreach ($allEntries as $key => $val) {
