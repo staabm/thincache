@@ -15,13 +15,15 @@
  */
 class CacheArray extends CacheAbstract
 {
+
     private static $NULL = 'clx-cache-null-marker';
-    
+
     /**
+     *
      * @var array
      */
     private $store = array();
-    
+
     public function get($key, $default = null)
     {
         // we optimize for performance, therefore use isset() and not array_key_exists().
@@ -34,7 +36,7 @@ class CacheArray extends CacheAbstract
         }
         return $default;
     }
-    
+
     public function set($key, $value, $expire)
     {
         // we use isset() in #get() therefore we need a magic marker for NULLs
@@ -43,13 +45,14 @@ class CacheArray extends CacheAbstract
         }
         $this->store[$key] = $value;
     }
-    
+
     public function delete($key)
     {
         unset($this->store[$key]);
     }
-    
-    public function supported() {
+
+    public function supported()
+    {
         return true;
     }
 }

@@ -3,12 +3,15 @@
 /**
  * @deprecated use CacheApcu instead
  */
-class CacheApc extends CacheAbstract {
+class CacheApc extends CacheAbstract
+{
+
     private static $requestStats = array();
 
     private static $supported = null;
 
-    public function __construct() {
+    public function __construct()
+    {
         if (empty(self::$requestStats)) {
             self::$requestStats['get'] = 0;
             self::$requestStats['set'] = 0;
@@ -16,35 +19,39 @@ class CacheApc extends CacheAbstract {
         }
     }
 
-    public function get($key, $default = null) {
+    public function get($key, $default = null)
+    {
         $key = $this->cacheKey($key);
-
+        
         $success = false;
-
-        self::$requestStats['get']++;
+        
+        self::$requestStats['get'] ++;
         $val = apc_fetch($key, $success);
         if ($success) {
             return $val;
         }
-
+        
         return $default;
     }
 
-    public function set($key, $value, $expire) {
+    public function set($key, $value, $expire)
+    {
         $key = $this->cacheKey($key);
-
-        self::$requestStats['set']++;
+        
+        self::$requestStats['set'] ++;
         apc_store($key, $value, $this->calcTtl($expire));
     }
 
-    public function delete($key) {
+    public function delete($key)
+    {
         $key = $this->cacheKey($key);
-
-        self::$requestStats['del']++;
+        
+        self::$requestStats['del'] ++;
         apc_delete($key);
     }
 
-    public function supported() {
+    public function supported()
+    {
         if (self::$supported === null) {
             // on ubuntu16 we got zend heap corruptions with APCIterator
             // disable this code path (and the feature until php-src fixed this issue)
@@ -52,7 +59,7 @@ class CacheApc extends CacheAbstract {
                 self::$supported = false;
             } else {
                 $supported = extension_loaded('apc') && class_exists('APCIterator', false);
-
+                
                 if (PHP_SAPI === 'cli') {
                     self::$supported = $supported && ini_get('apc.enable_cli');
                 } else {
@@ -60,37 +67,38 @@ class CacheApc extends CacheAbstract {
                 }
             }
         }
-
+        
         return self::$supported;
     }
 
     /**
      * increments a counter
      *
-     * @param string|CacheKey $key
-     * @param int $step
-     * @param int $expire
+     * @param string|CacheKey $key            
+     * @param int $step            
+     * @param int $expire            
      *
      * @return false|int False on error, otherwise the current value of the counter. Returns 0 when the counter has been created.
      */
-    public function increment($key, $step = 1, $expire) {
+    public function increment($key, $step = 1, $expire)
+    {
         $key = $this->cacheKey($key);
-
+        
         // try to increment a already existing counter
         $val = apc_inc($key, $step, $success);
-        self::$requestStats['set']++;
-
+        self::$requestStats['set'] ++;
+        
         // counter seems not to be existing
-        if (!$success) {
+        if (! $success) {
             // init the counter using add() to circumvent race conditions
             apc_add($key, 0, $this->calcTtl($expire));
-            self::$requestStats['set']++;
-
+            self::$requestStats['set'] ++;
+            
             // increment again after counter creation
             $val = apc_inc($key, $step, $success);
-            self::$requestStats['set']++;
+            self::$requestStats['set'] ++;
         }
-
+        
         if ($success) {
             return $val;
         }
@@ -100,37 +108,39 @@ class CacheApc extends CacheAbstract {
     /**
      * Returns all cached entries which key matches the given regexKey
      *
-     * @param string $regexKey
-     * @param int $limit
+     * @param string $regexKey            
+     * @param int $limit            
      * @return array
      */
-    public function getRegex($regexKey, $limit = 100) {
+    public function getRegex($regexKey, $limit = 100)
+    {
         $regexKey = $this->cacheKey($regexKey);
-
+        
         $it = new APCIterator('user', $regexKey, APC_ITER_ALL, $limit, APC_LIST_ACTIVE);
-        self::$requestStats['get']++;
-
+        self::$requestStats['get'] ++;
+        
         $res = array();
-        foreach($it as $k => $v) {
+        foreach ($it as $k => $v) {
             // wrap keys into static-keys so the caller can pass those apc-keys back into the cache-api,
             // without double-prefixing/namespacing issues
             $v['key'] = new CacheKeyStatic($v['key']);
             $res[] = $v;
         }
-
+        
         return $res;
     }
 
-    public function clearRegex($regexKey, $expiredOnly = false) {
+    public function clearRegex($regexKey, $expiredOnly = false)
+    {
         $regexKey = $this->cacheKey($regexKey);
-
+        
         $it = new APCIterator('user', $regexKey);
-
+        
         $now = time();
-        foreach($it as $apcKey => $item) {
-            if (!$expiredOnly || $expiredOnly && ($item['creation_time'] + $item['ttl']) < $now) {
+        foreach ($it as $apcKey => $item) {
+            if (! $expiredOnly || $expiredOnly && ($item['creation_time'] + $item['ttl']) < $now) {
                 // we need to call the apc-api directly, because apcKey is absolute
-                self::$requestStats['del']++;
+                self::$requestStats['del'] ++;
                 apc_delete($apcKey);
             }
         }
@@ -139,33 +149,35 @@ class CacheApc extends CacheAbstract {
     /**
      * clears the whole APC cache globally
      */
-    public function clear() {
+    public function clear()
+    {
         apc_clear_cache('user');
     }
 
-    public function getStats() {
+    public function getStats()
+    {
         $cinfo = apc_cache_info('user', true);
-
+        
         // support apc and old versions of apcu
         $hits = $misses = 0;
-
-        if (!empty($cinfo['num_hits'])) {
+        
+        if (! empty($cinfo['num_hits'])) {
             $hits = $cinfo['num_hits'];
-        } else if (!empty($cinfo['nhits'])) {
+        } else if (! empty($cinfo['nhits'])) {
             $hits = $cinfo['nhits'];
         }
-        if (!empty($cinfo['num_misses'])) {
+        if (! empty($cinfo['num_misses'])) {
             $misses = $cinfo['num_misses'];
-        } else if (!empty($cinfo['nmisses'])) {
+        } else if (! empty($cinfo['nmisses'])) {
             $misses = $cinfo['nmisses'];
         }
-
+        
         $stats = array();
         $stats['size'] = null;
         $stats['hits'] = $hits;
         $stats['misses'] = $misses;
-        $stats['more']   = 'r/w/d='. self::$requestStats['get'] . '/'.self::$requestStats['set']. '/'.self::$requestStats['del'];
-
+        $stats['more'] = 'r/w/d=' . self::$requestStats['get'] . '/' . self::$requestStats['set'] . '/' . self::$requestStats['del'];
+        
         return $stats;
     }
 }

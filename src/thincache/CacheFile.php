@@ -9,10 +9,13 @@
  */
 class CacheFile extends CacheAbstract
 {
+
     const READ_DATA = 1;
+
     const READ_TIMEOUT = 2;
+
     const READ_LAST_MODIFIED = 4;
-    
+
     public function get($key, $default = null)
     {
         $key = $this->cacheKey($key);
@@ -24,11 +27,11 @@ class CacheFile extends CacheAbstract
         
         $data = $this->read($file_path, self::READ_DATA);
         
-        if ($data [self::READ_DATA] === null) {
+        if ($data[self::READ_DATA] === null) {
             return $default;
         }
         
-        return $data [self::READ_DATA];
+        return $data[self::READ_DATA];
     }
 
     public function set($key, $value, $expire)
@@ -37,7 +40,7 @@ class CacheFile extends CacheAbstract
         
         return $this->write($this->getFilePath($key), $value, time() + $this->calcTtl($expire));
     }
-    
+
     public function delete($key)
     {
         $key = $this->cacheKey($key);
@@ -50,13 +53,13 @@ class CacheFile extends CacheAbstract
 
     protected function getFilePath($key)
     {
-        return APP_TMP_DIR . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . md5($key) . '.'. __CLASS__;
+        return APP_TMP_DIR . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . md5($key) . '.' . __CLASS__;
     }
 
     protected function isValid($path)
     {
         $data = $this->read($path, self::READ_TIMEOUT);
-        return time() < $data [self::READ_TIMEOUT];
+        return time() < $data[self::READ_TIMEOUT];
     }
 
     /**
@@ -70,10 +73,10 @@ class CacheFile extends CacheAbstract
      *            CacheFile::READ_TIMEOUT: The timeout
      *            CacheFile::READ_LAST_MODIFIED: The last modification
      *            timestamp
-     *
+     *            
      * @return array the (meta)data of the cache file. E.g.
      *         $data[CacheFile::READ_DATA]
-     *
+     *        
      * @throws CacheException
      */
     protected function read($path, $type = self::READ_DATA)
@@ -83,20 +86,20 @@ class CacheFile extends CacheAbstract
         }
         
         @flock($fp, LOCK_SH);
-        $data [self::READ_TIMEOUT] = intval(@stream_get_contents($fp, 12, 0));
-        if ($type != self::READ_TIMEOUT && time() < $data [self::READ_TIMEOUT]) {
+        $data[self::READ_TIMEOUT] = intval(@stream_get_contents($fp, 12, 0));
+        if ($type != self::READ_TIMEOUT && time() < $data[self::READ_TIMEOUT]) {
             if ($type & self::READ_LAST_MODIFIED) {
-                $data [self::READ_LAST_MODIFIED] = intval(@stream_get_contents($fp, 12, 12));
+                $data[self::READ_LAST_MODIFIED] = intval(@stream_get_contents($fp, 12, 12));
             }
             if ($type & self::READ_DATA) {
                 fseek($fp, 0, SEEK_END);
                 $length = ftell($fp) - 24;
                 fseek($fp, 24);
-                $data [self::READ_DATA] = @fread($fp, $length);
+                $data[self::READ_DATA] = @fread($fp, $length);
             }
         } else {
-            $data [self::READ_LAST_MODIFIED] = null;
-            $data [self::READ_DATA] = null;
+            $data[self::READ_LAST_MODIFIED] = null;
+            $data[self::READ_DATA] = null;
         }
         @flock($fp, LOCK_UN);
         @fclose($fp);
@@ -113,9 +116,9 @@ class CacheFile extends CacheAbstract
      *            The data to put in cache
      * @param integer $timeout
      *            The timeout timestamp
-     *
+     *            
      * @return boolean true if ok, otherwise false
-     *
+     *        
      * @throws CacheException
      */
     protected function write($path, $data, $timeout)
@@ -155,8 +158,9 @@ class CacheFile extends CacheAbstract
         
         return true;
     }
-    
-    public function supported() {
+
+    public function supported()
+    {
         return true;
     }
 }

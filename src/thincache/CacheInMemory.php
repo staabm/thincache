@@ -6,56 +6,72 @@
  *
  * @author mstaab
  */
-class CacheInMemory extends CacheAbstract {
+class CacheInMemory extends CacheAbstract
+{
 
     /**
+     *
      * @var CacheInterface
      */
     private $backend;
 
-    public function get($key, $default = null) {
+    public function get($key, $default = null)
+    {
         $this->init();
-
+        
         return $this->backend->get($key, $default);
     }
 
-    public function set($key, $value, $expire) {
+    public function set($key, $value, $expire)
+    {
         $this->init();
-
+        
         return $this->backend->set($key, $value, $expire);
     }
 
-    public function delete($key) {
+    public function delete($key)
+    {
         $this->init();
-
+        
         return $this->backend->delete($key);
     }
 
-    protected function init() {
-        if ($this->backend) return;
-
+    protected function init()
+    {
+        if ($this->backend)
+            return;
+        
         if (PHP_SAPI == 'cli') {
-            $supported = array('CacheMemcached', 'CacheMemcache');
+            $supported = array(
+                'CacheMemcached',
+                'CacheMemcache'
+            );
         } else {
-            $supported = array('CacheApcu', 'CacheApc', 'CacheMemcached', 'CacheMemcache');
+            $supported = array(
+                'CacheApcu',
+                'CacheApc',
+                'CacheMemcached',
+                'CacheMemcache'
+            );
         }
-
-        foreach($supported as $backend) {
+        
+        foreach ($supported as $backend) {
             /** @var $cache CacheInterface */
             $cache = new $backend();
             if ($cache->supported()) {
                 break;
             }
         }
-
-        if (!$cache || !$cache->supported()) {
+        
+        if (! $cache || ! $cache->supported()) {
             throw new InvalidArgumentException('Caching is not supported: Missing either APC/APCu or Memcached or Memcache!');
         }
-
+        
         $this->backend = new CacheProxy($cache);
     }
 
-    public function supported() {
+    public function supported()
+    {
         return true;
     }
 }

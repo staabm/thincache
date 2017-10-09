@@ -7,6 +7,7 @@
  */
 class CacheNothing extends CacheAbstract
 {
+
     public function get($key, $default = null)
     {
         return $default;
@@ -16,13 +17,14 @@ class CacheNothing extends CacheAbstract
     {
         // do nothing
     }
-    
+
     public function delete($key)
     {
         // do nothing
     }
-    
-    public function supported() {
+
+    public function supported()
+    {
         return true;
     }
 }

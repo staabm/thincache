@@ -1,17 +1,19 @@
 {
-    "name": "staabm/thincache",
-    "license": "MIT",
-    "description": "Thin abstraction layer for PHP 5.2+",
-    "authors": [
-        {
-            "name": "Markus Staab",
-            "email": "markus.staab@redaxo.de"
-        }
-    ],
-    "require": {
-        "php": ">=5.2.0"
-    },
-    "autoload": {
-        "classmap": [ "src/" ]
-    }
+	"name": "staabm/thincache",
+	"license": "MIT",
+	"description": "Thin abstraction layer for PHP 5.2+",
+	"authors": [
+		{
+			"name": "Markus Staab",
+			"email": "markus.staab@redaxo.de"
+		}
+	],
+	"require": {
+		"php": ">=5.2.0"
+	},
+	"autoload": {
+		"classmap": [
+			"src/"
+		]
+	}
 }
