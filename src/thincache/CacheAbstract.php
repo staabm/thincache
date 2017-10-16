@@ -7,7 +7,6 @@
  */
 abstract class CacheAbstract implements CacheInterface
 {
-
     public function lazyLookup($key, $callable, $expire)
     {
         $val = $this->get($key, 'clx-cache-null');
@@ -25,7 +24,7 @@ abstract class CacheAbstract implements CacheInterface
     /**
      * Calculate from the given timestamp/ttl the remaining ttl.
      *
-     * @param int $expire            
+     * @param int $expire
      * @return int
      */
     protected function calcTtl($expire)
@@ -38,7 +37,7 @@ abstract class CacheAbstract implements CacheInterface
 
     /**
      *
-     * @param string|CacheKey $key            
+     * @param string|CacheKey $key
      * @return string
      */
     protected function cacheKey($key)

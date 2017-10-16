@@ -38,8 +38,9 @@ class CacheInMemory extends CacheAbstract
 
     protected function init()
     {
-        if ($this->backend)
+        if ($this->backend) {
             return;
+        }
         
         if (PHP_SAPI == 'cli') {
             $supported = array(

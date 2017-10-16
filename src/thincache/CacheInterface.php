@@ -6,10 +6,10 @@ interface CacheInterface
     /**
      * retrieves a item from the cache identified by $key, fallback to $default if nothing can be found.
      *
-     * @param string $key            
+     * @param string $key
      * @param mixed $default
      *            value to be returned when no cached value found
-     *            
+     *
      * @return mixed the stored item or $default if nothing can be found
      */
     public function get($key, $default = null);
@@ -17,8 +17,8 @@ interface CacheInterface
     /**
      * stores a item into the cache for $expire seconds identified by $key
      *
-     * @param string $key            
-     * @param mixed $value            
+     * @param string $key
+     * @param mixed $value
      * @param int $expire
      *            seconds until expires
      */
@@ -27,7 +27,7 @@ interface CacheInterface
     /**
      * deletes the item identified by $key
      *
-     * @param string $key            
+     * @param string $key
      */
     public function delete($key);
 
@@ -35,8 +35,8 @@ interface CacheInterface
      * tries to find a item identified by $key.
      * If nothing can be found $callable is invoked and afterwards stored for $expire seconds indentfied by $key.
      *
-     * @param string $key            
-     * @param Callable $callable            
+     * @param string $key
+     * @param Callable $callable
      * @param int $expire
      *            seconds until expires or a timestamp
      * @return mixed

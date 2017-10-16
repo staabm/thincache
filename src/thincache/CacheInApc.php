@@ -40,8 +40,8 @@ class CacheInApc extends CacheAbstract
     /**
      * Returns all cached entries which key matches the given regexKey
      *
-     * @param string $regexKey            
-     * @param int $limit            
+     * @param string $regexKey
+     * @param int $limit
      * @return array
      *
      * @see CacheApcu#getRegex(), CacheApc#getRegex()
@@ -91,8 +91,9 @@ class CacheInApc extends CacheAbstract
 
     protected function init()
     {
-        if ($this->backend)
+        if ($this->backend) {
             return;
+        }
         
         $supported = array(
             'CacheApcu',

@@ -13,7 +13,6 @@ if (! defined('MEMCACHE_HOST')) {
  */
 class CacheMemcached extends CacheAbstract
 {
-
     private static $memcache = null;
 
     private static $requestStats = array();
@@ -36,7 +35,7 @@ class CacheMemcached extends CacheAbstract
 
     /**
      *
-     * @param string|CacheKey $key            
+     * @param string|CacheKey $key
      * @return string
      */
     protected function cacheKey($key)
@@ -79,12 +78,12 @@ class CacheMemcached extends CacheAbstract
     /**
      * increments a counter
      *
-     * @param string|CacheKey $key            
-     * @param int $step            
-     * @param int $expire            
+     * @param string|CacheKey $key
+     * @param int $step
+     * @param int $expire
      *
      * @return int The current value of the counter. Returns 0 when the counter has just been created.
-     *        
+     *
      * @since 0.9.0
      */
     public function increment($key, $step = 1, $expire)
@@ -112,8 +111,8 @@ class CacheMemcached extends CacheAbstract
     /**
      * Returns all cached entries which key matches the given regexKey
      *
-     * @param string $regexKey            
-     * @param int $limit            
+     * @param string $regexKey
+     * @param int $limit
      * @return array
      *
      * @since 0.9.0

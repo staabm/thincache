@@ -2,12 +2,11 @@
 
 class CacheKeyStatic implements CacheKey
 {
-
     private $key;
 
     /**
      *
-     * @param string $key            
+     * @param string $key
      */
     public function __construct($key)
     {

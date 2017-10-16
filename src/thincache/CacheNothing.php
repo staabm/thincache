@@ -7,7 +7,6 @@
  */
 class CacheNothing extends CacheAbstract
 {
-
     public function get($key, $default = null)
     {
         return $default;

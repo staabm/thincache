@@ -15,7 +15,6 @@
  */
 class CacheArray extends CacheAbstract
 {
-
     private static $NULL = 'clx-cache-null-marker';
 
     /**

@@ -14,7 +14,6 @@ if (! defined('MEMCACHE_HOST')) {
  */
 class CacheMemcache extends CacheAbstract
 {
-
     private static $memcache = null;
 
     private static $requestStats = array();
@@ -41,7 +40,7 @@ class CacheMemcache extends CacheAbstract
 
     /**
      *
-     * @param string|CacheKey $key            
+     * @param string|CacheKey $key
      * @return string
      */
     protected function cacheKey($key)

@@ -9,7 +9,6 @@
  */
 class CacheFile extends CacheAbstract
 {
-
     const READ_DATA = 1;
 
     const READ_TIMEOUT = 2;
@@ -73,10 +72,10 @@ class CacheFile extends CacheAbstract
      *            CacheFile::READ_TIMEOUT: The timeout
      *            CacheFile::READ_LAST_MODIFIED: The last modification
      *            timestamp
-     *            
+     *
      * @return array the (meta)data of the cache file. E.g.
      *         $data[CacheFile::READ_DATA]
-     *        
+     *
      * @throws CacheException
      */
     protected function read($path, $type = self::READ_DATA)
@@ -116,9 +115,9 @@ class CacheFile extends CacheAbstract
      *            The data to put in cache
      * @param integer $timeout
      *            The timeout timestamp
-     *            
+     *
      * @return boolean true if ok, otherwise false
-     *        
+     *
      * @throws CacheException
      */
     protected function write($path, $data, $timeout)

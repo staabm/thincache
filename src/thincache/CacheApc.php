@@ -5,7 +5,6 @@
  */
 class CacheApc extends CacheAbstract
 {
-
     private static $requestStats = array();
 
     private static $supported = null;
@@ -74,9 +73,9 @@ class CacheApc extends CacheAbstract
     /**
      * increments a counter
      *
-     * @param string|CacheKey $key            
-     * @param int $step            
-     * @param int $expire            
+     * @param string|CacheKey $key
+     * @param int $step
+     * @param int $expire
      *
      * @return false|int False on error, otherwise the current value of the counter. Returns 0 when the counter has been created.
      */
@@ -108,8 +107,8 @@ class CacheApc extends CacheAbstract
     /**
      * Returns all cached entries which key matches the given regexKey
      *
-     * @param string $regexKey            
-     * @param int $limit            
+     * @param string $regexKey
+     * @param int $limit
      * @return array
      */
     public function getRegex($regexKey, $limit = 100)
@@ -163,12 +162,12 @@ class CacheApc extends CacheAbstract
         
         if (! empty($cinfo['num_hits'])) {
             $hits = $cinfo['num_hits'];
-        } else if (! empty($cinfo['nhits'])) {
+        } elseif (! empty($cinfo['nhits'])) {
             $hits = $cinfo['nhits'];
         }
         if (! empty($cinfo['num_misses'])) {
             $misses = $cinfo['num_misses'];
-        } else if (! empty($cinfo['nmisses'])) {
+        } elseif (! empty($cinfo['nmisses'])) {
             $misses = $cinfo['nmisses'];
         }
         
