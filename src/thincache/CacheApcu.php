@@ -106,7 +106,7 @@ class CacheApcu extends CacheAbstract
     {
         $regexKey = $this->cacheKey($regexKey);
         
-        $it = new APCUIterator($regexKey, APC_ITER_ALL, $limit, APC_LIST_ACTIVE);
+        $it = new APCUIterator($regexKey, APC_ITER_KEY|APC_ITER_VALUE, $limit, APC_LIST_ACTIVE);
         self::$requestStats['get'] ++;
         
         $res = array();
