@@ -135,6 +135,10 @@ class CacheFile extends CacheAbstract
 
         $tmpFile = tempnam(dirname($path), basename($path));
 
+        if (!$tmpFile) {
+            throw new CacheException("Unable to create temp file '". $path ."'");
+        }
+
         if (! $fp = @fopen($tmpFile, 'wb')) {
             throw new CacheException(sprintf('Unable to write cache file "%s".', $tmpFile));
         }
