@@ -57,7 +57,7 @@ class CacheInMemory extends CacheAbstract
         }
 
         foreach ($supported as $backend) {
-            /** @var CacheInterface */
+            /** @var CacheInterface $cache */
             $cache = new $backend();
             if ($cache->supported()) {
                 break;
