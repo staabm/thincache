@@ -9,8 +9,7 @@ class CacheChain extends CacheAbstract
      */
     private $chain = array();
 
-    public function get($key, $default = null)
-    {
+    public function get($key, $default = null)    {
         foreach ($this->chain as $cache) {
             $cachedVal = $cache->get($key, $default);
             
