@@ -90,7 +90,7 @@ class CacheInApc extends CacheAbstract
 
         $cache = null;
         foreach ($supported as $backendClass) {
-            /** @var CacheInterface */
+            /** @var CacheApcu|CacheApc */
             $backend = new $backendClass();
             if ($backend->supported()) {
                 $cache = $backend;
