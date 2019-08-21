@@ -1,6 +1,6 @@
 This small cache abstraction layer was built because of the lack of PHP5.2 compilant caching libraries.
 
-Requires PHP 5.2+
+Supports PHP 5.2+
 
 Supported features:
 - use different backends, each with a dedicated driver
