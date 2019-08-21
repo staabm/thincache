@@ -139,8 +139,8 @@ class CacheFile extends CacheAbstract
             throw new CacheException(sprintf('Unable to write cache file "%s".', $tmpFile));
         }
 
-        @fwrite($fp, str_pad($timeout, 12, 0, STR_PAD_LEFT));
-        @fwrite($fp, str_pad(time(), 12, 0, STR_PAD_LEFT));
+        @fwrite($fp, str_pad((string) $timeout, 12, '0', STR_PAD_LEFT));
+        @fwrite($fp, str_pad((string) time(), 12, '0', STR_PAD_LEFT));
         @fwrite($fp, $data);
         @fclose($fp);
 
