@@ -9,7 +9,10 @@
 		}
 	],
 	"require": {
-		"php": ">=5.2.0"
+		"php": ">=5.2.0",
+        "ext-memcached": "*",
+        "ext-memcache": "*",
+        "ext-apcu": "*"
 	},
 	"autoload": {
 		"classmap": [
