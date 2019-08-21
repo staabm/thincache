@@ -12,8 +12,8 @@ jobs:
     - name: PHPStan
       uses: docker://oskarstark/phpstan-ga
       with:
-        args: analyse src/ --level=0
-        
+        args: analyse -c phpstan.neon.dist
+
   php-cs-fixer:
     name: PHP-CS-Fixer
     runs-on: ubuntu-latest
