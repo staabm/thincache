@@ -1,0 +1,11 @@
+parameters:
+    level: 0
+    paths:
+        - src/
+    ignoreErrors:
+        -
+            message: '#Instantiated class APCIterator not found\.#'
+        -
+            message: '#Instantiated class APCUIterator not found\#.'
+        -
+            message: '#Instantiated class Memcache not found\.#'
