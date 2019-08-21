@@ -19,21 +19,21 @@ class CacheInApc extends CacheAbstract
     public function get($key, $default = null)
     {
         $this->init();
-        
+
         return $this->backend->get($key, $default);
     }
 
     public function set($key, $value, $expire)
     {
         $this->init();
-        
+
         return $this->backend->set($key, $value, $expire);
     }
 
     public function delete($key)
     {
         $this->init();
-        
+
         return $this->backend->delete($key);
     }
 
@@ -49,7 +49,7 @@ class CacheInApc extends CacheAbstract
     public function getRegex($regexKey, $limit = 100)
     {
         $this->init();
-        
+
         return $this->backend->getRegex($regexKey, $limit);
     }
 
@@ -61,7 +61,7 @@ class CacheInApc extends CacheAbstract
     public function clear()
     {
         $this->init();
-        
+
         return $this->backend->clear();
     }
 
@@ -73,20 +73,8 @@ class CacheInApc extends CacheAbstract
     public function increment($key, $step = 1, $expire)
     {
         $this->init();
-        
-        return $this->backend->increment($key, $step, $expire);
-    }
 
-    /**
-     * APC* specific APIs
-     *
-     * @see CacheApcu#decrement(), CacheApc#decrement()
-     */
-    public function decrement($key, $step = 1, $expire)
-    {
-        $this->init();
-        
-        return $this->backend->decrement($key, $step, $expire);
+        return $this->backend->increment($key, $step, $expire);
     }
 
     protected function init()
@@ -94,22 +82,22 @@ class CacheInApc extends CacheAbstract
         if ($this->backend) {
             return;
         }
-        
+
         $supported = array(
             'CacheApcu',
             'CacheApc'
         );
-        
+
         $cache = null;
         foreach ($supported as $backendClass) {
-            /** @var $backend CacheInterface */
+            /** @var CacheInterface */
             $backend = new $backendClass();
             if ($backend->supported()) {
                 $cache = $backend;
                 break;
             }
         }
-        
+
         // as of now we cannot use CacheProxy because of the greater interface of APC* required
         $this->backend = $cache;
     }
@@ -117,7 +105,7 @@ class CacheInApc extends CacheAbstract
     public function supported()
     {
         $this->init();
-        
+
         return (bool) $this->backend;
     }
 }
