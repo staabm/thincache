@@ -23,3 +23,9 @@ jobs:
       uses: docker://oskarstark/php-cs-fixer-ga
       with:
         args: --diff --dry-run
+        
+  bc-check:
+    name: Backward Compatibility Check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: docker://nyholm/roave-bc-check-ga
