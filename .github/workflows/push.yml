@@ -32,4 +32,4 @@ jobs:
     - name: Backward Compatibility Check
       uses: docker://nyholm/roave-bc-check-ga
       with:
-        args: --from=master --to=HEAD
+        args:
