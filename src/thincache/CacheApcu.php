@@ -30,7 +30,7 @@ class CacheApcu extends CacheAbstract
         return $default;
     }
 
-    public function set($key, $value, $expire)
+    private function set($key, $value, $expire)
     {
         $key = $this->cacheKey($key);
         
