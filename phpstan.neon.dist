@@ -6,4 +6,3 @@ parameters:
         - '#Instantiated class APCIterator not found\.#'
         - '#Instantiated class APCUIterator not found\.#'
         - '#Instantiated class Memcache not found\.#'
-
