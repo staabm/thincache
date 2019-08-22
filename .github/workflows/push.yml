@@ -28,4 +28,6 @@ jobs:
     name: Backward Compatibility Check
     runs-on: ubuntu-latest
     steps:
-    - uses: docker://nyholm/roave-bc-check-ga
+    - uses: actions/checkout@master
+    - name: Backward Compatibility Check
+      uses: docker://nyholm/roave-bc-check-ga
