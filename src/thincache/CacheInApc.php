@@ -11,8 +11,7 @@ class CacheInApc extends CacheAbstract
 {
 
     /**
-     *
-     * @var CacheApcu|CacheApc|null
+     * @var CacheApcu|null
      */
     private $backend;
 
@@ -44,7 +43,7 @@ class CacheInApc extends CacheAbstract
      * @param int $limit
      * @return array
      *
-     * @see CacheApcu#getRegex(), CacheApc#getRegex()
+     * @see CacheApcu#getRegex()
      */
     public function getRegex($regexKey, $limit = 100)
     {
@@ -56,7 +55,7 @@ class CacheInApc extends CacheAbstract
     /**
      * APC* specific APIs
      *
-     * @see CacheApcu#clear(), CacheApc#clear()
+     * @see CacheApcu#clear()
      */
     public function clear()
     {
@@ -68,7 +67,7 @@ class CacheInApc extends CacheAbstract
     /**
      * APC* specific APIs
      *
-     * @see CacheApcu#increment(), CacheApc#increment()
+     * @see CacheApcu#increment()
      */
     public function increment($key, $step = 1, $expire)
     {
@@ -83,19 +82,10 @@ class CacheInApc extends CacheAbstract
             return;
         }
 
-        $supported = array(
-            'CacheApcu',
-            'CacheApc'
-        );
-
         $cache = null;
-        foreach ($supported as $backendClass) {
-            /** @var CacheApcu|CacheApc $backend */
-            $backend = new $backendClass();
-            if ($backend->supported()) {
-                $cache = $backend;
-                break;
-            }
+        $backend = new CacheApcu();
+        if ($backend->supported()) {
+            $cache = $backend;
         }
 
         // as of now we cannot use CacheProxy because of the greater interface of APC* required
