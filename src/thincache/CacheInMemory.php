@@ -61,7 +61,7 @@ class CacheInMemory extends CacheAbstract
         }
 
         if (! $cache->supported()) {
-            throw new InvalidArgumentException('Caching is not supported: Missing either APC/APCu or Memcached or Memcache!');
+            throw new InvalidArgumentException('Caching is not supported: Missing either APCu or Memcached!');
         }
 
         $this->backend = new CacheProxy($cache);
