@@ -4,8 +4,10 @@ on:
   push:
     branches:
     - master
-    - 1.0
+    - 1.x
   pull_request:
+    branches:
+    - '*'
 
 jobs:
        
