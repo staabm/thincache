@@ -3,16 +3,17 @@ name: PHP Checks
 on: [push]
 
 jobs:
-
-  phpstan:
+      
+  phpstant:
     name: PHPStan
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: PHPStan
-      uses: docker://oskarstark/phpstan-ga
+    - name: Setup PHP
+      uses: shivammathur/setup-php@master
       with:
-        args: analyse -c phpstan.neon.dist
+        php-version: 7.1
+    - run: composer require phpstan/phpstan-shim && vendor/bin/phpstan analyse -c phpstan.neon.dist
 
   php-cs-fixer:
     name: PHP-CS-Fixer
