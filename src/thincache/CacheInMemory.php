@@ -44,15 +44,12 @@ class CacheInMemory extends CacheAbstract
 
         if (PHP_SAPI == 'cli') {
             $supported = array(
-                'CacheMemcached',
-                'CacheMemcache'
+                'CacheMemcached'
             );
         } else {
             $supported = array(
                 'CacheApcu',
-                'CacheApc',
-                'CacheMemcached',
-                'CacheMemcache'
+                'CacheMemcached'
             );
         }
 
