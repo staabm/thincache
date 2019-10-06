@@ -3,16 +3,17 @@ name: PHP Checks
 on: [push]
 
 jobs:
-
+       
   phpstan:
     name: PHPStan
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: PHPStan
-      uses: docker://oskarstark/phpstan-ga
+    - name: Setup PHP
+      uses: shivammathur/setup-php@master
       with:
-        args: analyse -c phpstan.neon.dist
+        php-version: 7.1
+    - run: composer require phpstan/phpstan-shim && vendor/bin/phpstan analyse -c phpstan.neon.dist
 
   php-cs-fixer:
     name: PHP-CS-Fixer
@@ -23,3 +24,13 @@ jobs:
       uses: docker://oskarstark/php-cs-fixer-ga
       with:
         args: --diff --dry-run
+        
+  bc-check:
+    name: Backward Compatibility Check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Backward Compatibility Check
+      uses: docker://nyholm/roave-bc-check-ga
+      with:
+        args: --from=v0.9.0
