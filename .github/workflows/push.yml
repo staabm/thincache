@@ -1,6 +1,11 @@
 name: PHP Checks
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+    - master
+    - 1.0
+  pull_request:
 
 jobs:
        
