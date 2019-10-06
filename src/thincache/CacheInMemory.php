@@ -10,7 +10,7 @@ class CacheInMemory extends CacheAbstract
 {
 
     /**
-     * @var CacheInterface
+     * @var CacheInterface|null
      */
     private $backend = null;
 
