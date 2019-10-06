@@ -10,10 +10,9 @@ class CacheInMemory extends CacheAbstract
 {
 
     /**
-     *
      * @var CacheInterface
      */
-    private $backend;
+    private $backend = null;
 
     public function get($key, $default = null)
     {
