@@ -3,8 +3,8 @@ name: PHP Checks
 on: [push]
 
 jobs:
-      
-  phpstant:
+       
+  phpstan:
     name: PHPStan
     runs-on: ubuntu-latest
     steps:
