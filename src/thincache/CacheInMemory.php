@@ -60,7 +60,7 @@ class CacheInMemory extends CacheAbstract
             }
         }
 
-        if (! $cache || ! $cache->supported()) {
+        if (! $cache->supported()) {
             throw new InvalidArgumentException('Caching is not supported: Missing either APC/APCu or Memcached or Memcache!');
         }
 
