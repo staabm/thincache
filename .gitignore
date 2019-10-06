@@ -1,27 +1,3 @@
-# Windows image file caches
-Thumbs.db
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
 .php_cs.cache
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+composer.lock
+vendor/

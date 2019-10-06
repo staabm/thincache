@@ -10,29 +10,28 @@ class CacheInMemory extends CacheAbstract
 {
 
     /**
-     *
-     * @var CacheInterface
+     * @var CacheInterface|null
      */
-    private $backend;
+    private $backend = null;
 
     public function get($key, $default = null)
     {
         $this->init();
-        
+
         return $this->backend->get($key, $default);
     }
 
     public function set($key, $value, $expire)
     {
         $this->init();
-        
+
         return $this->backend->set($key, $value, $expire);
     }
 
     public function delete($key)
     {
         $this->init();
-        
+
         return $this->backend->delete($key);
     }
 
@@ -41,33 +40,30 @@ class CacheInMemory extends CacheAbstract
         if ($this->backend) {
             return;
         }
-        
+
         if (PHP_SAPI == 'cli') {
             $supported = array(
-                'CacheMemcached',
-                'CacheMemcache'
+                'CacheMemcached'
             );
         } else {
             $supported = array(
                 'CacheApcu',
-                'CacheApc',
-                'CacheMemcached',
-                'CacheMemcache'
+                'CacheMemcached'
             );
         }
-        
+
         foreach ($supported as $backend) {
-            /** @var $cache CacheInterface */
+            /** @var CacheInterface $cache */
             $cache = new $backend();
             if ($cache->supported()) {
                 break;
             }
         }
-        
-        if (! $cache || ! $cache->supported()) {
-            throw new InvalidArgumentException('Caching is not supported: Missing either APC/APCu or Memcached or Memcache!');
+
+        if (! $cache->supported()) {
+            throw new InvalidArgumentException('Caching is not supported: Missing either APCu or Memcached!');
         }
-        
+
         $this->backend = new CacheProxy($cache);
     }
 
