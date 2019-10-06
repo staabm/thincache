@@ -20,10 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: PHP-CS-Fixer
-      uses: docker://oskarstark/php-cs-fixer-ga
+    - name: Setup PHP
+      uses: shivammathur/setup-php@master
       with:
-        args: --diff --dry-run
+        php-version: 7.0
+    - run: composer require friendsofphp/php-cs-fixer && vendor/bin/php-cs-fixer fix --diff --dry-run
         
   bc-check:
     name: Backward Compatibility Check
