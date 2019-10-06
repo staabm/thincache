@@ -106,7 +106,7 @@ class CacheApcu extends CacheAbstract
     {
         $regexKey = $this->cacheKey($regexKey);
         
-        $it = new APCUIterator($regexKey, APC_ITER_KEY|APC_ITER_VALUE, $limit, APC_LIST_ACTIVE);
+        $it = new APCuIterator($regexKey, APC_ITER_KEY|APC_ITER_VALUE, $limit, APC_LIST_ACTIVE);
         self::$requestStats['get'] ++;
         
         $res = array();
@@ -124,7 +124,7 @@ class CacheApcu extends CacheAbstract
     {
         $regexKey = $this->cacheKey($regexKey);
         
-        $it = new APCUIterator($regexKey);
+        $it = new APCuIterator($regexKey);
         
         $now = time();
         foreach ($it as $apcKey => $item) {
