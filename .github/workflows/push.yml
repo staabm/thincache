@@ -30,7 +30,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: 7.0
+        php-version: 7.1
     - run: composer require friendsofphp/php-cs-fixer && vendor/bin/php-cs-fixer fix --diff --dry-run
         
   bc-check:
