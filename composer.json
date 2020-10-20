@@ -15,5 +15,13 @@
 		"classmap": [
 			"src/"
 		]
+	},
+	"scripts": {
+		"phpstan-baseline": [
+			"phpstan analyse -c phpstan.neon.dist --generate-baseline || true"
+		]
+	},
+	"require-dev": {
+		"phpstan/phpstan": "^0.12.50"
 	}
 }
