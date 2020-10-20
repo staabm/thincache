@@ -1,0 +1,332 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property CacheApcu\\:\\:\\$requestStats has no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Property CacheApcu\\:\\:\\$supported has no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Method CacheApcu\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Method CacheApcu\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Method CacheApcu\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Method CacheApcu\\:\\:getRegex\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Method CacheApcu\\:\\:clearRegex\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Method CacheApcu\\:\\:clearRegex\\(\\) has parameter \\$expiredOnly with no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Method CacheApcu\\:\\:clearRegex\\(\\) has parameter \\$regexKey with no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Comparison operation \"\\<\" between \\(array\\|float\\|int\\) and int results in an error\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Left side of && is always true\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Method CacheApcu\\:\\:clear\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Method CacheApcu\\:\\:getStats\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: "#^Property CacheArray\\:\\:\\$NULL has no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheArray.php
+
+		-
+			message: "#^Property CacheArray\\:\\:\\$store type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/thincache/CacheArray.php
+
+		-
+			message: "#^Method CacheArray\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheArray.php
+
+		-
+			message: "#^Method CacheArray\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheArray.php
+
+		-
+			message: "#^Method CacheArray\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheArray.php
+
+		-
+			message: "#^Method CacheChain\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheChain.php
+
+		-
+			message: "#^Method CacheChain\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheChain.php
+
+		-
+			message: "#^Method CacheChain\\:\\:addCache\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheChain.php
+
+		-
+			message: "#^Method CacheChain\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheChain.php
+
+		-
+			message: "#^Method CacheFile\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: "#^Method CacheFile\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: "#^Method CacheFile\\:\\:getFilePath\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: "#^Method CacheFile\\:\\:getFilePath\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: "#^Method CacheFile\\:\\:isValid\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: "#^Method CacheFile\\:\\:isValid\\(\\) has parameter \\$path with no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: "#^Method CacheFile\\:\\:read\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: "#^Method CacheFile\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: "#^Method CacheInApc\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: "#^Method CacheInApc\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: "#^Method CacheInApc\\:\\:getRegex\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: "#^Method CacheInApc\\:\\:clear\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: "#^Method CacheInApc\\:\\:increment\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: "#^Method CacheInApc\\:\\:increment\\(\\) has parameter \\$expire with no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: "#^Method CacheInApc\\:\\:increment\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: "#^Method CacheInApc\\:\\:increment\\(\\) has parameter \\$step with no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: "#^Method CacheInApc\\:\\:init\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: "#^Method CacheInApc\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: "#^Method CacheInMemory\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInMemory.php
+
+		-
+			message: "#^Method CacheInMemory\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInMemory.php
+
+		-
+			message: "#^Method CacheInMemory\\:\\:init\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInMemory.php
+
+		-
+			message: "#^Method CacheInMemory\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInMemory.php
+
+		-
+			message: "#^Method CacheInterface\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInterface.php
+
+		-
+			message: "#^Method CacheInterface\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInterface.php
+
+		-
+			message: "#^Method CacheInterface\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheInterface.php
+
+		-
+			message: "#^Method CacheKeyNamespaced\\:\\:__construct\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheKeyNamespaced.php
+
+		-
+			message: "#^Property CacheKeyStatic\\:\\:\\$key has no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheKeyStatic.php
+
+		-
+			message: "#^Property CacheMemcached\\:\\:\\$memcache has no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: "#^Property CacheMemcached\\:\\:\\$requestStats has no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: "#^Method CacheMemcached\\:\\:connect\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: "#^Method CacheMemcached\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: "#^Method CacheMemcached\\:\\:getRegex\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between 16 and 0 will always evaluate to false\\.$#"
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: "#^Method CacheMemcached\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: "#^Method CacheMemcached\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: "#^Method CacheMemcached\\:\\:getStats\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: "#^Method CacheNothing\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheNothing.php
+
+		-
+			message: "#^Method CacheNothing\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheNothing.php
+
+		-
+			message: "#^Method CacheNothing\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheNothing.php
+
+		-
+			message: "#^Method CacheProxy\\:\\:__construct\\(\\) has parameter \\$proxyExpiretime with no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheProxy.php
+
+		-
+			message: "#^Method CacheProxy\\:\\:__construct\\(\\) has parameter \\$proxyStore with no typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheProxy.php
+
+		-
+			message: "#^Method CacheProxy\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheProxy.php
+
+		-
+			message: "#^Method CacheProxy\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheProxy.php
+
+		-
+			message: "#^Method CacheProxy\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: src/thincache/CacheProxy.php
+
