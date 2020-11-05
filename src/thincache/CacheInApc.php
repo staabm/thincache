@@ -42,6 +42,7 @@ class CacheInApc extends CacheAbstract
      * @param string|CacheKey $regexKey
      * @param int $limit
      * @return array
+     * @phpstan-return list<array{key: CacheKeyStatic, value: mixed}>
      *
      * @see CacheApcu#getRegex()
      */
