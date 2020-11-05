@@ -111,7 +111,7 @@ class CacheMemcached extends CacheAbstract
     /**
      * Returns all cached entries which key matches the given regexKey
      *
-     * @param string $regexKey
+     * @param string|CacheKey $regexKey
      * @param int $limit
      * @return array
      *
