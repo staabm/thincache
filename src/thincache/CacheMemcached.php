@@ -76,6 +76,25 @@ class CacheMemcached extends CacheAbstract
     }
 
     /**
+     * Atomic add operation.
+     *
+     * @param string|CacheKey $key
+     * @param mixed $value
+     * @param int $expire
+     *            seconds until expires
+     * @return bool
+     */
+    public function add($key, $value, $expire)
+    {
+        $this->connect();
+
+        $key = $this->cacheKey($key);
+
+        self::$requestStats['add'] ++;
+        return self::$memcache->add($key, $value, $this->calcTtl($expire));
+    }
+
+    /**
      * increments a counter
      *
      * @param string|CacheKey $key
