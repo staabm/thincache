@@ -70,7 +70,7 @@ class CacheInApc extends CacheAbstract
      *
      * @see CacheApcu#increment()
      */
-    public function increment($key, $step = 1, $expire)
+    public function increment($key, $step, $expire)
     {
         $this->init();
 
