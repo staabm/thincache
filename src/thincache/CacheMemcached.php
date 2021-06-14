@@ -105,7 +105,7 @@ class CacheMemcached extends CacheAbstract
      *
      * @since 0.9.0
      */
-    public function increment($key, $step = 1, $expire)
+    public function increment($key, $step, $expire)
     {
         $this->connect();
 
