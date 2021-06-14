@@ -70,7 +70,7 @@ class CacheApcu extends CacheAbstract
      *
      * @return false|int False on error, otherwise the current value of the counter. Returns 0 when the counter has been created.
      */
-    public function increment($key, $step = 1, $expire)
+    public function increment($key, $step, $expire)
     {
         $key = $this->cacheKey($key);
         
