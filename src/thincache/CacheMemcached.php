@@ -208,6 +208,9 @@ class CacheMemcached extends CacheAbstract
         return class_exists('Memcached', false);
     }
 
+    /**
+     * @return array{size: int|null, hits: int, misses: int, more: string}
+     */
     public function getStats()
     {
         $this->connect();
