@@ -56,11 +56,6 @@ parameters:
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Method CacheApcu\\:\\:getStats\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/thincache/CacheApcu.php
-
-		-
 			message: "#^Property CacheArray\\:\\:\\$NULL has no typehint specified\\.$#"
 			count: 1
 			path: src/thincache/CacheArray.php
@@ -267,11 +262,6 @@ parameters:
 
 		-
 			message: "#^Method CacheMemcached\\:\\:supported\\(\\) has no return typehint specified\\.$#"
-			count: 1
-			path: src/thincache/CacheMemcached.php
-
-		-
-			message: "#^Method CacheMemcached\\:\\:getStats\\(\\) has no return typehint specified\\.$#"
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
