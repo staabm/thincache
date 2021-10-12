@@ -145,6 +145,9 @@ class CacheApcu extends CacheAbstract
         apcu_clear_cache();
     }
 
+    /**
+     * @return array{size: int|null, hits: int, misses: int, more: string}
+     */
     public function getStats()
     {
         $cinfo = apcu_cache_info(true);
