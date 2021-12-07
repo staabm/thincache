@@ -20,7 +20,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: 7.3
-    - run: composer require phpstan/phpstan && vendor/bin/phpstan analyse -c phpstan.neon.dist
+    - run: composer install && vendor/bin/phpstan analyse -c phpstan.neon.dist
 
   php-cs-fixer:
     name: PHP-CS-Fixer
