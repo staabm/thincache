@@ -19,6 +19,13 @@ class CacheMemcached extends CacheAbstract
             return;
         }
 
+        if (!defined('MEMCACHE_HOST')) {            
+            throw new CacheException('Missing required constant MEMCACHE_HOST');
+        }
+        if (!defined('MEMCACHE_PORT')) {            
+            throw new CacheException('Missing required constant MEMCACHE_PORT');
+        }
+
         self::$memcache = new Memcached();
         if (! self::$memcache->addServer(MEMCACHE_HOST, MEMCACHE_PORT)) {
             throw new CacheException('Unable to add server ' . MEMCACHE_HOST . ' on port ' . MEMCACHE_PORT . ', ResultCode:' . self::$memcache->getResultCode());
