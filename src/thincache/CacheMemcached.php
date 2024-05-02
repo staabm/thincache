@@ -1,8 +1,4 @@
 <?php
-if (! defined('MEMCACHE_HOST')) {
-    define('MEMCACHE_HOST', "127.0.0.1");
-    define('MEMCACHE_PORT', 11211);
-}
 
 /**
  * Persist into Memcached (newer php extension)
