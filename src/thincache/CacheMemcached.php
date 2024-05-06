@@ -19,10 +19,10 @@ class CacheMemcached extends CacheAbstract
             return;
         }
 
-        if (!defined('MEMCACHE_HOST')) {            
+        if (!defined('MEMCACHE_HOST')) {
             throw new CacheException('Missing required constant MEMCACHE_HOST');
         }
-        if (!defined('MEMCACHE_PORT')) {            
+        if (!defined('MEMCACHE_PORT')) {
             throw new CacheException('Missing required constant MEMCACHE_PORT');
         }
 
