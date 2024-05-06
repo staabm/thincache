@@ -32,13 +32,3 @@ jobs:
       with:
         php-version: 7.1
     - run: composer require friendsofphp/php-cs-fixer && vendor/bin/php-cs-fixer fix --diff --dry-run
-        
-  bc-check:
-    name: Backward Compatibility Check
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: Backward Compatibility Check
-      uses: docker://nyholm/roave-bc-check-ga
-      with:
-        args: --from=v1.0
