@@ -1,8 +1,4 @@
 <?php
-if (! defined('MEMCACHE_HOST')) {
-    define('MEMCACHE_HOST', "127.0.0.1");
-    define('MEMCACHE_PORT', 11211);
-}
 
 /**
  * Persist into Memcached (newer php extension)
@@ -21,6 +17,13 @@ class CacheMemcached extends CacheAbstract
     {
         if (self::$memcache) {
             return;
+        }
+
+        if (!defined('MEMCACHE_HOST')) {
+            throw new CacheException('Missing required constant MEMCACHE_HOST');
+        }
+        if (!defined('MEMCACHE_PORT')) {
+            throw new CacheException('Missing required constant MEMCACHE_PORT');
         }
 
         self::$memcache = new Memcached();
