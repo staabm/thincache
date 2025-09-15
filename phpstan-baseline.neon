@@ -751,12 +751,6 @@ parameters:
 			path: src/thincache/CacheProxy.php
 
 		-
-			message: '#^Method CacheProxy\:\:__construct\(\) has parameter \$proxyStore with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/thincache/CacheProxy.php
-
-		-
 			message: '#^Method CacheProxy\:\:delete\(\) has no return type specified\.$#'
 			identifier: missingType.return
 			count: 1
@@ -776,12 +770,6 @@ parameters:
 
 		-
 			message: '#^Property CacheProxy\:\:\$proxyExpireTime \(int\) does not accept mixed\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: src/thincache/CacheProxy.php
-
-		-
-			message: '#^Property CacheProxy\:\:\$proxyStore \(CacheInterface\) does not accept mixed\.$#'
 			identifier: assign.propertyType
 			count: 1
 			path: src/thincache/CacheProxy.php

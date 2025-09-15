@@ -21,7 +21,7 @@ class CacheProxy extends CacheAbstract
      */
     private $backend;
 
-    public function __construct(CacheInterface $backend, $proxyStore = null, $proxyExpiretime = 3600)
+    public function __construct(CacheInterface $backend, CacheInterface $proxyStore = null, $proxyExpiretime = 3600)
     {
         $this->backend = $backend;
         $this->proxyStore = $proxyStore ? $proxyStore : new CacheArray();
