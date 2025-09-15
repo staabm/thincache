@@ -1,307 +1,812 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Comparison operation \"\\<\" between \\(array\\|float\\|int\\) and int results in an error\\.$#"
+			message: '#^Binary operation "\+" between mixed and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Left side of && is always true\\.$#"
+			message: '#^Binary operation "\." between ''r/w/d\='' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Method CacheApcu\\:\\:clear\\(\\) has no return typehint specified\\.$#"
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Cannot access offset ''creation_time'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Method CacheApcu\\:\\:clearRegex\\(\\) has no return typehint specified\\.$#"
+			message: '#^Cannot access offset ''del'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Cannot access offset ''get'' on 0\|0\.0\|''''\|''0''\|array\{\}\|false\|null\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Method CacheApcu\\:\\:clearRegex\\(\\) has parameter \\$expiredOnly with no typehint specified\\.$#"
+			message: '#^Cannot access offset ''get'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Cannot access offset ''key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Cannot access offset ''set'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Cannot access offset ''ttl'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Method CacheApcu\\:\\:clearRegex\\(\\) has parameter \\$regexKey with no typehint specified\\.$#"
+			message: '#^Cannot use \+\+ on mixed\.$#'
+			identifier: postInc.type
+			count: 6
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Left side of && is always true\.$#'
+			identifier: booleanAnd.leftAlwaysTrue
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Method CacheApcu\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheApcu\:\:clear\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Method CacheApcu\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheApcu\:\:clearRegex\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Method CacheApcu\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheApcu\:\:clearRegex\(\) has parameter \$expiredOnly with no type specified\.$#'
+			identifier: missingType.parameter
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Property CacheApcu\\:\\:\\$requestStats has no typehint specified\\.$#"
+			message: '#^Method CacheApcu\:\:clearRegex\(\) has parameter \$regexKey with no type specified\.$#'
+			identifier: missingType.parameter
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Property CacheApcu\\:\\:\\$supported has no typehint specified\\.$#"
+			message: '#^Method CacheApcu\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheApcu.php
 
 		-
-			message: "#^Method CacheArray\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheApcu\:\:getRegex\(\) should return list\<array\{key\: CacheKeyStatic, value\: mixed\}\> but returns list\<mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Method CacheApcu\:\:getStats\(\) should return array\{size\: int\|null, hits\: int, misses\: int, more\: string\} but returns array\{size\: null, hits\: mixed, misses\: mixed, more\: non\-falsy\-string\}\.$#'
+			identifier: return.type
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Method CacheApcu\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Method CacheApcu\:\:supported\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Parameter \#1 \$key of class CacheKeyStatic constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Parameter \#1 \$key of method CacheAbstract\:\:cacheKey\(\) expects CacheKey\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Property CacheApcu\:\:\$requestStats has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Property CacheApcu\:\:\$supported has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/thincache/CacheApcu.php
+
+		-
+			message: '#^Method CacheArray\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheArray.php
 
 		-
-			message: "#^Method CacheArray\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheArray\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheArray.php
 
 		-
-			message: "#^Method CacheArray\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheArray\:\:supported\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheArray.php
 
 		-
-			message: "#^Property CacheArray\\:\\:\\$NULL has no typehint specified\\.$#"
+			message: '#^Possibly invalid array key type CacheKey\|string\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 4
+			path: src/thincache/CacheArray.php
+
+		-
+			message: '#^Property CacheArray\:\:\$NULL has no type specified\.$#'
+			identifier: missingType.property
 			count: 1
 			path: src/thincache/CacheArray.php
 
 		-
-			message: "#^Property CacheArray\\:\\:\\$store type has no value type specified in iterable type array\\.$#"
+			message: '#^Property CacheArray\:\:\$store type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/thincache/CacheArray.php
 
 		-
-			message: "#^Method CacheChain\\:\\:addCache\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheChain\:\:addCache\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheChain.php
 
 		-
-			message: "#^Method CacheChain\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheChain\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheChain.php
 
 		-
-			message: "#^Method CacheChain\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheChain\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheChain.php
 
 		-
-			message: "#^Method CacheChain\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheChain\:\:supported\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheChain.php
 
 		-
-			message: "#^Method CacheFile\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: '#^Binary operation "&" between mixed and 1 results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/thincache/CacheFile.php
 
 		-
-			message: "#^Method CacheFile\\:\\:getFilePath\\(\\) has no return typehint specified\\.$#"
+			message: '#^Binary operation "&" between mixed and 4 results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/thincache/CacheFile.php
 
 		-
-			message: "#^Method CacheFile\\:\\:getFilePath\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			message: '#^Binary operation "\." between mixed and ''/''\|''\\\\'' results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/thincache/CacheFile.php
 
 		-
-			message: "#^Method CacheFile\\:\\:isValid\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheFile\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheFile.php
 
 		-
-			message: "#^Method CacheFile\\:\\:isValid\\(\\) has parameter \\$path with no typehint specified\\.$#"
+			message: '#^Method CacheFile\:\:getFilePath\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheFile.php
 
 		-
-			message: "#^Method CacheFile\\:\\:read\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method CacheFile\:\:getFilePath\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
 			count: 1
 			path: src/thincache/CacheFile.php
 
 		-
-			message: "#^Method CacheFile\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheFile\:\:isValid\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheFile.php
 
 		-
-			message: "#^Method CacheFile\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheFile\:\:isValid\(\) has parameter \$path with no type specified\.$#'
+			identifier: missingType.parameter
 			count: 1
 			path: src/thincache/CacheFile.php
 
 		-
-			message: "#^Method CacheInApc\\:\\:clear\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheFile\:\:read\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: '#^Method CacheFile\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: '#^Method CacheFile\:\:supported\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_exists expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/thincache/CacheFile.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function unlink expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: '#^Parameter \#1 \$path of method CacheFile\:\:read\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/thincache/CacheFile.php
+
+		-
+			message: '#^Parameter \#1 \$path of method CacheFile\:\:write\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: '#^Parameter \#1 \$string of function md5 expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: '#^Parameter \#2 \$data of method CacheFile\:\:write\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: '#^Parameter \#2 \$length of function fread expects int\<1, max\>, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheFile.php
+
+		-
+			message: '#^Cannot call method clear\(\) on CacheApcu\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheInApc.php
 
 		-
-			message: "#^Method CacheInApc\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: '#^Cannot call method delete\(\) on CacheApcu\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheInApc.php
 
 		-
-			message: "#^Method CacheInApc\\:\\:increment\\(\\) has no return typehint specified\\.$#"
+			message: '#^Cannot call method get\(\) on CacheApcu\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheInApc.php
 
 		-
-			message: "#^Method CacheInApc\\:\\:increment\\(\\) has parameter \\$expire with no typehint specified\\.$#"
+			message: '#^Cannot call method getRegex\(\) on CacheApcu\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheInApc.php
 
 		-
-			message: "#^Method CacheInApc\\:\\:increment\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			message: '#^Cannot call method increment\(\) on CacheApcu\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheInApc.php
 
 		-
-			message: "#^Method CacheInApc\\:\\:increment\\(\\) has parameter \\$step with no typehint specified\\.$#"
+			message: '#^Cannot call method set\(\) on CacheApcu\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheInApc.php
 
 		-
-			message: "#^Method CacheInApc\\:\\:init\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheInApc\:\:clear\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheInApc.php
 
 		-
-			message: "#^Method CacheInApc\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheInApc\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheInApc.php
 
 		-
-			message: "#^Method CacheInApc\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheInApc\:\:increment\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheInApc.php
 
 		-
-			message: "#^Method CacheInMemory\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheInApc\:\:increment\(\) has parameter \$expire with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: '#^Method CacheInApc\:\:increment\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: '#^Method CacheInApc\:\:increment\(\) has parameter \$step with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: '#^Method CacheInApc\:\:init\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: '#^Method CacheInApc\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: '#^Method CacheInApc\:\:supported\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheInApc.php
+
+		-
+			message: '#^Cannot call method delete\(\) on CacheInterface\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheInMemory.php
 
 		-
-			message: "#^Method CacheInMemory\\:\\:init\\(\\) has no return typehint specified\\.$#"
+			message: '#^Cannot call method get\(\) on CacheInterface\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheInMemory.php
 
 		-
-			message: "#^Method CacheInMemory\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: '#^Cannot call method set\(\) on CacheInterface\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheInMemory.php
 
 		-
-			message: "#^Method CacheInMemory\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheInMemory\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheInMemory.php
 
 		-
-			message: "#^Method CacheInterface\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheInMemory\:\:init\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheInMemory.php
+
+		-
+			message: '#^Method CacheInMemory\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheInMemory.php
+
+		-
+			message: '#^Method CacheInMemory\:\:supported\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheInMemory.php
+
+		-
+			message: '#^PHPDoc tag @var with type CacheInterface is not subtype of native type CacheApcu\|CacheMemcached\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: src/thincache/CacheInMemory.php
+
+		-
+			message: '#^Method CacheInterface\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheInterface.php
 
 		-
-			message: "#^Method CacheInterface\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheInterface\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheInterface.php
 
 		-
-			message: "#^Method CacheInterface\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheInterface\:\:supported\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheInterface.php
 
 		-
-			message: "#^Method CacheKeyNamespaced\\:\\:__construct\\(\\) has parameter \\$key with no typehint specified\\.$#"
+			message: '#^Method CacheKeyNamespaced\:\:__construct\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
 			count: 1
 			path: src/thincache/CacheKeyNamespaced.php
 
 		-
-			message: "#^Property CacheKeyStatic\\:\\:\\$key has no typehint specified\\.$#"
+			message: '#^Property CacheKeyNamespaced\:\:\$key \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/thincache/CacheKeyNamespaced.php
+
+		-
+			message: '#^Method CacheKeyStatic\:\:toKey\(\) should return string but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: src/thincache/CacheKeyStatic.php
 
 		-
-			message: "#^Method CacheMemcached\\:\\:connect\\(\\) has no return typehint specified\\.$#"
+			message: '#^Property CacheKeyStatic\:\:\$key has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/thincache/CacheKeyStatic.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 2
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Binary operation "\." between ''Unable to add…'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: "#^Method CacheMemcached\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: '#^Binary operation "\." between ''Unable to fetch all…'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Binary operation "\." between ''r/w/d\='' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: "#^Method CacheMemcached\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 11
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot access offset ''add'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: "#^Method CacheMemcached\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			message: '#^Cannot access offset ''bytes'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: "#^Property CacheMemcached\\:\\:\\$memcache has no typehint specified\\.$#"
+			message: '#^Cannot access offset ''del'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot access offset ''get'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot access offset ''get_hits'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: "#^Property CacheMemcached\\:\\:\\$requestStats has no typehint specified\\.$#"
+			message: '#^Cannot access offset ''get_misses'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: "#^Strict comparison using \\=\\=\\= between 16 and 0 will always evaluate to false\\.$#"
+			message: '#^Cannot access offset ''set'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method add\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: "#^Method CacheNothing\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: '#^Cannot call method delete\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method getAllKeys\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method getMulti\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method getOption\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method getResultCode\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 11
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method getResultMessage\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 5
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method getStats\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method increment\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method set\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot call method setOption\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Cannot use \+\+ on mixed\.$#'
+			identifier: postInc.type
+			count: 7
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Method CacheMemcached\:\:add\(\) should return bool but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Method CacheMemcached\:\:connect\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Method CacheMemcached\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Method CacheMemcached\:\:getStats\(\) should return array\{size\: int\|null, hits\: int, misses\: int, more\: string\} but returns array\{hits\: mixed, misses\: mixed, size\: mixed, more\: non\-falsy\-string\}\.$#'
+			identifier: return.type
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Method CacheMemcached\:\:increment\(\) should return int but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Method CacheMemcached\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Method CacheMemcached\:\:supported\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_slice expects array, array\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Parameter \#1 \$array of function current expects array\|object, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Parameter \#1 \$host of method Memcached\:\:addServer\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Parameter \#1 \$key of class CacheKeyStatic constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Parameter \#2 \$array of function preg_grep expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Parameter \#2 \$port of method Memcached\:\:addServer\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Property CacheMemcached\:\:\$memcache has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Property CacheMemcached\:\:\$requestStats has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between 16 and 0 will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
+			message: '#^Method CacheNothing\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheNothing.php
 
 		-
-			message: "#^Method CacheNothing\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheNothing\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheNothing.php
 
 		-
-			message: "#^Method CacheNothing\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheNothing\:\:supported\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheNothing.php
 
 		-
-			message: "#^Method CacheProxy\\:\\:__construct\\(\\) has parameter \\$proxyExpiretime with no typehint specified\\.$#"
+			message: '#^Method CacheProxy\:\:__construct\(\) has parameter \$proxyExpiretime with no type specified\.$#'
+			identifier: missingType.parameter
 			count: 1
 			path: src/thincache/CacheProxy.php
 
 		-
-			message: "#^Method CacheProxy\\:\\:__construct\\(\\) has parameter \\$proxyStore with no typehint specified\\.$#"
+			message: '#^Method CacheProxy\:\:__construct\(\) has parameter \$proxyStore with no type specified\.$#'
+			identifier: missingType.parameter
 			count: 1
 			path: src/thincache/CacheProxy.php
 
 		-
-			message: "#^Method CacheProxy\\:\\:delete\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheProxy\:\:delete\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheProxy.php
 
 		-
-			message: "#^Method CacheProxy\\:\\:set\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheProxy\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: src/thincache/CacheProxy.php
 
 		-
-			message: "#^Method CacheProxy\\:\\:supported\\(\\) has no return typehint specified\\.$#"
+			message: '#^Method CacheProxy\:\:supported\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/thincache/CacheProxy.php
+
+		-
+			message: '#^Property CacheProxy\:\:\$proxyExpireTime \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/thincache/CacheProxy.php
+
+		-
+			message: '#^Property CacheProxy\:\:\$proxyStore \(CacheInterface\) does not accept mixed\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/thincache/CacheProxy.php
 
