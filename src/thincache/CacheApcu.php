@@ -151,6 +151,9 @@ class CacheApcu extends CacheAbstract
     public function getStats()
     {
         $cinfo = apcu_cache_info(true);
+        if ($cinfo === false) {
+            $cinfo = [];
+        }
         
         // support apc and old versions of apcu
         $hits = $misses = 0;

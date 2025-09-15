@@ -220,7 +220,11 @@ class CacheMemcached extends CacheAbstract
         $stats = array();
 
         // Memcached returns an array of stats, we just use one server -> use first stats
-        $memStats = current(self::$memcache->getStats());
+        $cinfo = self::$memcache->getStats();
+        if ($cinfo === false) {
+            $cinfo = [];
+        }
+        $memStats = current($cinfo);
 
         $stats['hits'] = $memStats['get_hits'];
         $stats['misses'] = $memStats['get_misses'];
