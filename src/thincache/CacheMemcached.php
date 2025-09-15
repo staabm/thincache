@@ -9,6 +9,9 @@
  */
 class CacheMemcached extends CacheAbstract
 {
+    /**
+     * @var ?Memcached
+     */
     private static $memcache = null;
 
     private static $requestStats = array();
@@ -220,11 +223,17 @@ class CacheMemcached extends CacheAbstract
         $stats = array();
 
         // Memcached returns an array of stats, we just use one server -> use first stats
-        $memStats = current(self::$memcache->getStats());
+        $memStats = self::$memcache->getStats();
+        if ($memStats !== false) {
+            $memStats = current($memStats);
+        }
+        if ($memStats === false) {
+            $memStats = array();
+        }
 
-        $stats['hits'] = $memStats['get_hits'];
-        $stats['misses'] = $memStats['get_misses'];
-        $stats['size'] = $memStats['bytes'];
+        $stats['hits'] = $memStats['get_hits'] ?? 0;
+        $stats['misses'] = $memStats['get_misses'] ?? 0;
+        $stats['size'] = $memStats['bytes'] ?? 0;
         $stats['more'] = 'r/w/d=' . self::$requestStats['get'] . '/' . self::$requestStats['set'] . '/' . self::$requestStats['del'];
 
         return $stats;
