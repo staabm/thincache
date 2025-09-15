@@ -9,6 +9,9 @@
  */
 class CacheMemcached extends CacheAbstract
 {
+    /**
+     * @var ?Memcached
+     */
     private static $memcache = null;
 
     private static $requestStats = array();

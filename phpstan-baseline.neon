@@ -499,21 +499,21 @@ parameters:
 			path: src/thincache/CacheKeyStatic.php
 
 		-
+			message: '#^Argument of an invalid type array\|false supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/thincache/CacheMemcached.php
+
+		-
 			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
-			count: 2
+			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
 			message: '#^Binary operation "\." between ''Unable to add…'' and mixed results in an error\.$#'
 			identifier: binaryOp.invalid
 			count: 1
-			path: src/thincache/CacheMemcached.php
-
-		-
-			message: '#^Binary operation "\." between ''Unable to fetch all…'' and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 2
 			path: src/thincache/CacheMemcached.php
 
 		-
@@ -525,7 +525,7 @@ parameters:
 		-
 			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
 			identifier: binaryOp.invalid
-			count: 11
+			count: 3
 			path: src/thincache/CacheMemcached.php
 
 		-
@@ -571,73 +571,73 @@ parameters:
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method add\(\) on mixed\.$#'
+			message: '#^Cannot call method add\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method delete\(\) on mixed\.$#'
+			message: '#^Cannot call method delete\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
+			message: '#^Cannot call method get\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 2
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method getAllKeys\(\) on mixed\.$#'
+			message: '#^Cannot call method getAllKeys\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method getMulti\(\) on mixed\.$#'
+			message: '#^Cannot call method getMulti\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method getOption\(\) on mixed\.$#'
+			message: '#^Cannot call method getOption\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method getResultCode\(\) on mixed\.$#'
+			message: '#^Cannot call method getResultCode\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 11
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method getResultMessage\(\) on mixed\.$#'
+			message: '#^Cannot call method getResultMessage\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 5
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method getStats\(\) on mixed\.$#'
+			message: '#^Cannot call method getStats\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method increment\(\) on mixed\.$#'
+			message: '#^Cannot call method increment\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method set\(\) on mixed\.$#'
+			message: '#^Cannot call method set\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Cannot call method setOption\(\) on mixed\.$#'
+			message: '#^Cannot call method setOption\(\) on Memcached\|null\.$#'
 			identifier: method.nonObject
 			count: 2
 			path: src/thincache/CacheMemcached.php
@@ -646,12 +646,6 @@ parameters:
 			message: '#^Cannot use \+\+ on mixed\.$#'
 			identifier: postInc.type
 			count: 7
-			path: src/thincache/CacheMemcached.php
-
-		-
-			message: '#^Method CacheMemcached\:\:add\(\) should return bool but returns mixed\.$#'
-			identifier: return.type
-			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
@@ -673,7 +667,7 @@ parameters:
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Method CacheMemcached\:\:increment\(\) should return int but returns mixed\.$#'
+			message: '#^Method CacheMemcached\:\:increment\(\) should return int but returns int\|false\.$#'
 			identifier: return.type
 			count: 1
 			path: src/thincache/CacheMemcached.php
@@ -697,25 +691,7 @@ parameters:
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Parameter \#1 \$array of function current expects array\|object, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/thincache/CacheMemcached.php
-
-		-
 			message: '#^Parameter \#1 \$host of method Memcached\:\:addServer\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/thincache/CacheMemcached.php
-
-		-
-			message: '#^Parameter \#1 \$key of class CacheKeyStatic constructor expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/thincache/CacheMemcached.php
-
-		-
-			message: '#^Parameter \#2 \$array of function preg_grep expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/thincache/CacheMemcached.php
@@ -733,14 +709,14 @@ parameters:
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Property CacheMemcached\:\:\$memcache has no type specified\.$#'
+			message: '#^Property CacheMemcached\:\:\$requestStats has no type specified\.$#'
 			identifier: missingType.property
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
 		-
-			message: '#^Property CacheMemcached\:\:\$requestStats has no type specified\.$#'
-			identifier: missingType.property
+			message: '#^Strict comparison using \!\=\= between array and false will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
 			count: 1
 			path: src/thincache/CacheMemcached.php
 
